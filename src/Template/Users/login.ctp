@@ -5,7 +5,7 @@
   <?= $this->Flash->render() ?>
   <?= $this->Form->create() ?>
   <br>
-  <img class="logo-img" src="../webroot/img/logo.jpg" alt="logo" style="align: middle;">
+  <img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;">
   <br>
       <fieldset class="login-infos">
           <legend class="legend"><?= __("Sign in") ?></legend>
@@ -18,6 +18,6 @@
 
           <legend class="legend"><?= __("New User") ?></legend><br><br>
 
-          <a href="/infidem-feedback/Users/addUser" target="addUser"><img src="../img/signup.png" alt="Signup"></a>
+          <a href="/infidem-feedback/Users/addUser" target="addUser"><img src="/infidem-feedback/img/signup.png" alt="Signup"></a>
       </fieldset>
   </div>

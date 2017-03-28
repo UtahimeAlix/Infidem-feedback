@@ -15,6 +15,17 @@
   background: white;
 }
 
+.add {
+  display: block;
+  margin: auto;
+  width: 400px;
+  border:2px solid black;
+  -moz-border-radius:8px;
+  -webkit-border-radius:8px;
+  border-radius:8px;
+  background: white;
+}
+
 .legend {
   float:left;
 }

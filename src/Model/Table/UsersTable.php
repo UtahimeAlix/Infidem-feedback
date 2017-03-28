@@ -21,6 +21,13 @@ class UsersTable extends Table
             ->notEmpty('email', __("Please enter an email."));
         return $validator;
     }
+
+    public function validationPassword(Validator $validator)
+        {
+            $validator
+                ->notEmpty('password', __('Please enter a password.'));
+            return $validator;
+        }
 }
 
 ?>

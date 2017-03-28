@@ -177,18 +177,26 @@ return [
      * 'YourTransport.php', where 'Your' is the name of the transport.
      */
     'EmailTransport' => [
-        'default' => [
-            'className' => 'Mail',
-            // The following keys are used in SMTP transports
-            'host' => 'localhost',
-            'port' => 25,
-            'timeout' => 30,
-            'username' => 'user',
-            'password' => 'secret',
-            'client' => null,
-            'tls' => null,
-            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
-        ],
+      'default' => [
+        'className' => 'Mail',
+        // The following keys are used in SMTP transports
+        'host' => 'localhost',
+        'port' => 25,
+        'timeout' => 30,
+        'username' => 'user',
+        'password' => 'secret',
+        'client' => null,
+        'tls' => null,
+        'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+      ],
+      'sendgrid' => [
+        'port'=> 587,
+        'timeout'=> 30,
+        'host' => 'smtp.sendgrid.net',
+        'username'=>'apikey',
+        'password'=>'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',
+        'className'=>'Smtp'
+      ],
     ],
 
     /**
