@@ -1,11 +1,23 @@
-<div class="users form">
-<?= $this->Flash->render() ?>
-<?= $this->Form->create() ?>
-    <fieldset>
-        <legend><?= __("Merci de rentrer vos nom d'utilisateur et mot de passe") ?></legend>
-        <?= $this->Form->input('username') ?>
-        <?= $this->Form->input('password') ?>
-    </fieldset>
-<?= $this->Form->button(__('Se Connecter')); ?>
-<?= $this->Form->end() ?>
-</div>
+<?php
+  $this->assign('title', __("Login"));
+ ?>
+  <div class="login">
+  <?= $this->Flash->render() ?>
+  <?= $this->Form->create() ?>
+  <br>
+  <img class="logo-img" src="../webroot/img/logo.jpg" alt="logo" style="align: middle;">
+  <br>
+      <fieldset class="login-infos">
+          <legend class="legend"><?= __("Sign in") ?></legend>
+          <?= $this->Form->input('username', array('style'=>'font-size: 11px; height:30px')) ?>
+          <?= $this->Form->input('password', array('style'=>'font-size: 11px; height:30px')) ?>
+          <?= $this->Html->link("Forgot Password?",['controller'=>'Users','action'=>'forgotPassword'], array('style'=>'font-size: 10px; height:20px'));?>
+          <br>
+          <?= $this->Form->submit('../img/signin.png'); ?>
+          <?= $this->Form->end() ?>
+
+          <legend class="legend"><?= __("New User") ?></legend><br><br>
+
+          <a href="/infidem-feedback/Users/addUser" target="addUser"><img src="../img/signup.png" alt="Signup"></a>
+      </fieldset>
+  </div>

@@ -51,7 +51,7 @@ class AppController extends Controller
             ],
             'logoutRedirect' => [
                 'controller' => 'Users',
-                'action' => 'index',
+                'action' => 'login',
                 'login'
             ]
         ]);
@@ -62,6 +62,11 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['view', 'addUser', 'forgotPassword', 'resetPassword']);
     }
 
     /**
