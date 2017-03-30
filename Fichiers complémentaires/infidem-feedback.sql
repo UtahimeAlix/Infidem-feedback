@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 23 Mars 2017 à 19:12
+-- Généré le :  Jeu 30 Mars 2017 à 15:40
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -40,8 +40,18 @@ CREATE TABLE `acces` (
 
 CREATE TABLE `mandates` (
   `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL,
-  `state` int(11) NOT NULL
+  `name` varchar(150) NOT NULL DEFAULT '0',
+  `state` int(11) NOT NULL,
+  `contexte` varchar(500) NOT NULL,
+  `besoin` varchar(500) NOT NULL,
+  `infrastructure` varchar(500) DEFAULT NULL,
+  `external` tinyint(1) NOT NULL DEFAULT '0',
+  `internal` tinyint(1) NOT NULL DEFAULT '0',
+  `wireless` tinyint(1) NOT NULL DEFAULT '0',
+  `web` tinyint(1) NOT NULL DEFAULT '0',
+  `mobile` tinyint(1) NOT NULL DEFAULT '0',
+  `review` tinyint(1) NOT NULL DEFAULT '0',
+  `validation` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -79,8 +89,17 @@ CREATE TABLE `users` (
   `compagny_name` varchar(150) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `image` blob,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  `password_reset_token` varchar(250) DEFAULT NULL,
+  `hashval` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `compagny_name`, `email`, `image`, `role_id`, `password_reset_token`, `hashval`) VALUES
+(1, 'Utahime', '$2y$10$o8iou4b21uIEBejrDvg65.2DycMRnK1ndXOt.ZlC3Un2WziqlGZTi', '', '', 'alix.berson@gmail.com', NULL, 1, '060c72878581704db715765b174f34897cde87c7', 'c50fe32e42977c4c1141fd5f4c553a64b313624a');
 
 --
 -- Index pour les tables exportées
@@ -136,7 +155,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Contraintes pour les tables exportées
 --
