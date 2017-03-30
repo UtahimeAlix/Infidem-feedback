@@ -29,3 +29,8 @@
 .legend {
   float:left;
 }
+
+.legend-ods {
+  float:left;
+  margin-bottom: 15px;
+}

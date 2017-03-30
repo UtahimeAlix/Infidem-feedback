@@ -1,6 +1,4 @@
-<?php
-  $this->assign('title', __("Login"));
- ?>
+<?php $this->assign('title', __("Login")); ?>
   <div class="login">
   <?= $this->Flash->render() ?>
   <?= $this->Form->create() ?>

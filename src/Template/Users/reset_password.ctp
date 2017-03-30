@@ -1,3 +1,4 @@
+<?php $this->assign('title', __("Reset Password")); ?>
 <div class="users form">
   <br><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"><br>
     <?= $this->Form->create($user) ?>

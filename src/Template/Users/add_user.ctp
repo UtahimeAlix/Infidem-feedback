@@ -1,3 +1,4 @@
+<?php $this->assign('title', __("Add User")); ?>
 <div class="users form">
 <?= $this->Form->create($user) ?><br>
 <img class="logo-img" src="../webroot/img/logo.jpg" alt="logo" style="align: middle;"><br>

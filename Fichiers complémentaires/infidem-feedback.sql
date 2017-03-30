@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 30 Mars 2017 à 15:40
+-- Généré le :  Jeu 30 Mars 2017 à 17:07
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -40,11 +40,10 @@ CREATE TABLE `acces` (
 
 CREATE TABLE `mandates` (
   `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL DEFAULT '0',
-  `state` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `state` int(11) NOT NULL DEFAULT '0',
   `contexte` varchar(500) NOT NULL,
   `besoin` varchar(500) NOT NULL,
-  `infrastructure` varchar(500) DEFAULT NULL,
   `external` tinyint(1) NOT NULL DEFAULT '0',
   `internal` tinyint(1) NOT NULL DEFAULT '0',
   `wireless` tinyint(1) NOT NULL DEFAULT '0',
@@ -53,6 +52,13 @@ CREATE TABLE `mandates` (
   `review` tinyint(1) NOT NULL DEFAULT '0',
   `validation` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `mandates`
+--
+
+INSERT INTO `mandates` (`id`, `name`, `state`, `contexte`, `besoin`, `external`, `internal`, `wireless`, `web`, `mobile`, `review`, `validation`) VALUES
+(2, 'Test', 0, 'test', 'test', 0, 1, 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +97,7 @@ CREATE TABLE `users` (
   `image` blob,
   `role_id` int(11) NOT NULL,
   `password_reset_token` varchar(250) DEFAULT NULL,
-  `hashval` varchar(250) NOT NULL
+  `hashval` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -99,7 +105,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `compagny_name`, `email`, `image`, `role_id`, `password_reset_token`, `hashval`) VALUES
-(1, 'Utahime', '$2y$10$o8iou4b21uIEBejrDvg65.2DycMRnK1ndXOt.ZlC3Un2WziqlGZTi', '', '', 'alix.berson@gmail.com', NULL, 1, '060c72878581704db715765b174f34897cde87c7', 'c50fe32e42977c4c1141fd5f4c553a64b313624a');
+(1, 'Utahime', '$2y$10$o8iou4b21uIEBejrDvg65.2DycMRnK1ndXOt.ZlC3Un2WziqlGZTi', '', '', 'alix.berson@gmail.com', NULL, 1, '060c72878581704db715765b174f34897cde87c7', 'c50fe32e42977c4c1141fd5f4c553a64b313624a'),
+(2, 'pandastein', '$2y$10$KV.qaHiPftt0aXY4W9CBbOAJd7q/7zHF.GvZMpEQPOiG5UjV.HamG', 'Ouin', 'LOL', 'franck.jorge@hotmail.fr', '', 1, NULL, NULL);
 
 --
 -- Index pour les tables exportées
@@ -145,7 +152,7 @@ ALTER TABLE `acces`
 -- AUTO_INCREMENT pour la table `mandates`
 --
 ALTER TABLE `mandates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `roles`
 --
@@ -155,7 +162,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --
