@@ -194,7 +194,7 @@ return [
         'timeout'=> 30,
         'host' => 'smtp.sendgrid.net',
         'username'=>'apikey',
-        'password'=>'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',
+        'password'=>'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',
         'className'=>'Smtp'
       ],
     ],
