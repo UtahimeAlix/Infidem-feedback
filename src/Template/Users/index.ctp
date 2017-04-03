@@ -9,6 +9,8 @@
                         </h4>
                         <h5>
                           <?php echo $user->email; ?>
+                          <?= $this->Html->link('Edit', ['action' => 'edit', $user->id]) ?>
+                          <?= $this->Form->postLink('Delete',['action' =>'delete', $user->id], ['confirm' => 'Are you sure?']) ?>
                         </h5>
                         <br>
                     </div>

@@ -53,16 +53,18 @@ class AppController extends Controller
                 'controller' => 'Users',
                 'action' => 'login',
                 'login'
-            ]
+            ],
+            'authorize' => array('Controller')
         ]);
-
-        /*
-         * Enable the following components for recommended CakePHP security settings.
-         * see http://book.cakephp.org/3.0/en/controllers/components/security.html
-         */
-        //$this->loadComponent('Security');
-        //$this->loadComponent('Csrf');
     }
+
+    public function isAuthorized($user) {
+    if (isset($user['role_id']) && $user['role_id'] === 1) {
+        return true;
+    }
+
+    return false;
+}
 
     public function beforeFilter(Event $event)
     {

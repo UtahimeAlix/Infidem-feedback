@@ -3,7 +3,7 @@
 <div class="ods form">
 <?= $this->Form->create($mandate) ?><br>
     <fieldset class="add">
-        <legend class="legend"><?= __('Ordre du Sphinx') ?></legend>
+        <legend class="legend"><?= __('Offre de Service') ?></legend>
         <?= $this->Form->input('name') ?>
         <?= $this->Form->input('contexte') ?>
         <?= $this->Form->input('besoin') ?>
