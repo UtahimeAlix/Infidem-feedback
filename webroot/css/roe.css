@@ -82,9 +82,7 @@ html, body {
 }
 
 #web_login,
-#web_password,
-#login,
-#password {
+#web_password {
   float:left;
   width:25%;
   margin-left: 10px;

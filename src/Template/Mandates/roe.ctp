@@ -12,7 +12,7 @@
 <?= $this->Form->create($mandate) ?>
     <fieldset class="addRoe">
       <legend class="legend"><?= __('Règles d\'engagement') ?></legend>
-      <br><br>
+      <br><br><br>
         <h4 class="page-header"><strong>Context</strong></h4>
         <div><?= $mandate->contexte; ?></div>
         <h4 class="page-header"><strong>Requirement</strong></h4>
@@ -62,10 +62,10 @@
         <h5>Application mobile</h5>
         <button class="btn btn-sm btn-success add_mobile_cred btn-right"><i class="fa fa-plus"></i></button>
         <div class="input_fields_mobile_cred form-group">
-                <label for="login" class="field-name">Login:</label>
-                <input type="text" name="mytext[]" id="login">
-                <label for="password"  class="field-name">Password: </label>
-                <input class="form-control" type="password" name="mytext[]" id="password">
+          <label for="web_login" class="field-name">Login:</label>
+          <input class="form-control" type="text" name="web_login[]" id="web_login">
+          <label for="web_password"  class="field-name">Password: </label>
+          <input class="form-control" type="password" name="web_password[]" id="web_password">
         </div>
         <div class="input_fields_wrap1">
             <div><input class="champ-plein" type="text" name="mytext[]"></div>
