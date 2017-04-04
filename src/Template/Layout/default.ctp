@@ -40,11 +40,11 @@ $cakeDescription = 'In Fidem feedback';
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="../webroot/css/font-awesome.css"/>
-  <link rel="stylesheet" href="../webroot/css/bootstrap.css"/>
-  <script src="../webroot/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/infidem-feedback/webroot/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/infidem-feedback/webroot/css/bootstrap.css"/>
+  <script src="/infidem-feedback/webroot/js/bootstrap.js"></script>
   <script src="https://use.fontawesome.com/885f761feb.js"></script>
-  <script src="../webroot/js/dynamic_input_form.js"></script>
+  <script src="/infidem-feedback/webroot/js/dynamic_input_form.js"></script>
 </head>
 
 <body>

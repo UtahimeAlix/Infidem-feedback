@@ -10,7 +10,9 @@
 
 <div class="ods form">
 <?= $this->Form->create($mandate) ?>
-    <fieldset class="add">
+    <fieldset class="addRoe">
+      <legend class="legend"><?= __('Règles d\'engagement') ?></legend>
+      <br><br>
         <h4 class="page-header"><strong>Context</strong></h4>
         <div><?= $mandate->contexte; ?></div>
         <h4 class="page-header"><strong>Requirement</strong></h4>
@@ -20,23 +22,23 @@
         <h4 class="page-header"><strong>Infrastructure</strong></h4>
         <?php if($mandate->external === true): ?>
         <h5>Périmètre externe</h5>
-        <button style="margin-top:7px; float:right;" class="btn btn-sm btn-success add_external_ip"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-sm btn-success add_external_ip btn-add"><i class="fa fa-plus"></i></button>
         <div class="input_fields_external">
-            <div><input style="margin-top:15px; width:90%;" type="text" name="ext_ip[]"></div>
+            <div><input class="champ-text" type="text" name="ext_ip[]"></div>
         </div>
         <?php endif; ?>
         <?php if($mandate->internal === true): ?>
         <h5>Réseau interne</h5>
-        <button style="margin-top:7px; float:right;" class="btn btn-sm btn-success add_internal_ip"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-sm btn-success add_internal_ip btn-add"><i class="fa fa-plus"></i></button>
         <div class="input_fields_internal">
-            <div><input style="margin-top:15px; width:90%;" type="text" name="int_ip[]"></div>
+            <div><input class="champ-text" type="text" name="int_ip[]"></div>
         </div>
         <?php endif; ?>
         <?php if($mandate->wireless === true): ?>
         <h5>Réseau sans-fil</h5>
-        <button style="margin-top:7px; float:right;" class="btn btn-sm btn-success add_wl_ssid"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-sm btn-success add_wl_ssid btn-add"><i class="fa fa-plus"></i></button>
         <div class="input_fields_ssid">
-            <div><input style="margin-top:15px; width:90%;" type="text" name="ssid[]"></div>
+            <div><input class="champ-text" type="text" name="ssid[]"></div>
         </div>
         <?php endif; ?>
         <?php endif; ?>
@@ -44,39 +46,39 @@
         <h4 class="page-header"><strong>Applicatif</strong></h4>
         <?php if($mandate->web === true): ?>
         <h5>Application web</h5>
-        <button style="float:right;" class="btn btn-sm btn-success add_web_cred"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-sm btn-success add_web_cred btn-right"><i class="fa fa-plus"></i></button>
         <div class="input_fields_web_cred form-group">
-                <label for="web_login" style="float:left; line-height:30px; font-size:14px;">Login:</label>
-                <input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="web_login[]" id="web_login">
-                <label for="web_password"  style="float:left; line-height:30px; font-size:14px;">Password: </label>
-                <input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="web_password[]" id="web_password">
+                <label for="web_login" class="field-name">Login:</label>
+                <input class="form-control" type="text" name="web_login[]" id="web_login">
+                <label for="web_password"  class="field-name">Password: </label>
+                <input class="form-control" type="password" name="web_password[]" id="web_password">
         </div>
-        <button style="margin-top:18px; float:right;" class="btn btn-sm btn-success add_web_url"><i class="fa fa-plus"></i></button>
+        <button style="margin-top:18px" class="btn btn-sm btn-success add_web_url btn-right"><i class="fa fa-plus"></i></button>
         <div class="input_fields_web_url">
-            <div><input style="margin-top:15px; width:90%;" type="text" name="mytext[]"></div>
+            <div><input class="champ-text" type="text" name="mytext[]"></div>
         </div>
         <?php endif; ?>
         <?php if($mandate->mobile === true): ?>
         <h5>Application mobile</h5>
-        <button style="float:right;" class="btn btn-sm btn-success add_mobile_cred"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-sm btn-success add_mobile_cred btn-right"><i class="fa fa-plus"></i></button>
         <div class="input_fields_mobile_cred form-group">
-                <label for="login" style="float:left; line-height:30px; font-size:14px;">Login:</label>
-                <input style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="mytext[]" id="login">
-                <label for="password"  style="float:left; line-height:30px; font-size:14px;">Password: </label>
-                <input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="mytext[]" id="password">
+                <label for="login" class="field-name">Login:</label>
+                <input type="text" name="mytext[]" id="login">
+                <label for="password"  class="field-name">Password: </label>
+                <input class="form-control" type="password" name="mytext[]" id="password">
         </div>
         <div class="input_fields_wrap1">
-            <div><input style="margin-top:15px; width:100%;" type="text" name="mytext[]"></div>
+            <div><input class="champ-plein" type="text" name="mytext[]"></div>
         </div>
         <?php endif; ?>
         <?php if($mandate->review === true): ?>
         <h5>Revue de code</h5>
         <div class="input_fields_wrap2">
-            <div><input style="margin-top:15px; width:100%;" type="text" name="mytext[]"></div>
+            <div><input class="champ-plein" type="text" name="mytext[]"></div>
         </div>
         <?php endif; ?>
         <?php endif; ?>
-        <button type="submit" class="btn btn-primary" style="float:right;">Save</button>
+        <button type="submit" class="btn btn-primary btn-right">Save</button>
         <?= $this->Form->end() ?>
     </fieldset>
 </div>

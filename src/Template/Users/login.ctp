@@ -13,7 +13,7 @@
           <button type="submit" class="btn-info btn-login" ><?= __('Login') ?></button>
           <?= $this->Form->end() ?>
 
-          <legend class="legend"><?= __("New User") ?></legend><br><br><br>
+          <legend class="legend"><?= __("New User") ?></legend><br><br><br><br>
 
           <a href="/infidem-feedback/Users/addUser" target="_self"><button type="button" class="btn-info btn-login" ><?= __('Sign up') ?></button></a>
       </fieldset>
