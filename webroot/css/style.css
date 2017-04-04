@@ -13,6 +13,7 @@
   -webkit-border-radius:8px;
   border-radius:8px;
   background: white;
+  padding:15px;
 }
 
 .add {
@@ -28,9 +29,26 @@
 
 .legend {
   float:left;
+  padding: 5px;
+  font-size: 18px;
+  color: #1798A5;
 }
 
-.legend-ods {
-  float:left;
-  margin-bottom: 15px;
+.btn-login {
+  border-radius: 10%;
+  border: 2px solid #1798A5;
+  width: 90px;
+  margin-left: 65%;
+  background-color: #5BC0DE;
+  padding:5px;
+}
+
+.champ {
+  font-size: 11px !important;
+  height:30px !important;
+}
+
+.checkbox {
+  margin-top:0px !important;
+  margin-bottom:0px !important;
 }

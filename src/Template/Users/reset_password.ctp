@@ -6,7 +6,7 @@
         <legend class='legend'><?= __('Forgot password') ?></legend>
         <?= $this->Form->input('new_password',['type'=>'password']) ?>
         <?= $this->Form->input('confirm_password',['type'=>'password']) ?>
-        <?= $this->Form->submit('../img/next.png', array('style' => 'margin-left: auto; display:block;')) ?>
+        <button type="submit" class="btn-info btn-login" ><?= __('Next') ?></button>
         <?= $this->Form->end() ?>
     </fieldset>
 </div>

@@ -4,19 +4,19 @@
 <?= $this->Form->create($mandate) ?><br>
     <fieldset class="add">
         <legend class="legend"><?= __('Offre de Service') ?></legend>
-        <?= $this->Form->input('name') ?>
-        <?= $this->Form->input('contexte') ?>
-        <?= $this->Form->input('besoin') ?>
-        <legend class="legend-ods"><?= __('Infrastructure') ?></legend>
-        <?= $this->Form->input('external') ?>
-        <?= $this->Form->input('internal') ?>
-        <?= $this->Form->input('wireless') ?>
-        <legend class="legend-ods"><?= __('Applicatif') ?></legend>
-        <?= $this->Form->input('web') ?>
-        <?= $this->Form->input('mobile') ?>
-        <?= $this->Form->input('review') ?>
-        <?= $this->Form->input('validation') ?>
-      <?= $this->Form->submit('../img/save.png', array('style' => 'margin-left: auto; display:block;')) ?>
+        <?= $this->Form->input('name', array('class'=>'champ')) ?>
+        <?= $this->Form->input('contexte', array('class'=>'champ')) ?>
+        <?= $this->Form->input('besoin', array('class'=>'champ')) ?>
+        <legend class="legend"><?= __('Infrastructure') ?></legend>
+        <?= $this->Form->input('external', array('class'=>'checkbox')) ?>
+        <?= $this->Form->input('internal', array('class'=>'checkbox')) ?>
+        <?= $this->Form->input('wireless', array('class'=>'checkbox')) ?>
+        <legend class="legend"><?= __('Applicatif') ?></legend>
+        <?= $this->Form->input('web', array('class'=>'checkbox')) ?>
+        <?= $this->Form->input('mobile', array('class'=>'checkbox')) ?>
+        <?= $this->Form->input('review', array('class'=>'checkbox')) ?>
+        <?= $this->Form->input('validation', array('class'=>'checkbox')) ?>
+        <button type="submit" class="btn-info btn-login" ><?= __('Save') ?></button>
         <?= $this->Form->end() ?>
     </fieldset>
 </div>

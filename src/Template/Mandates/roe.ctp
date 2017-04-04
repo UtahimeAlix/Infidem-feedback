@@ -3,75 +3,6 @@
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-    
-        <link rel="stylesheet" href="../../css/font-awesome.css"/>
-        <link rel="stylesheet" href="../../css/bootstrap.css"/>
-        <script src="../../js/bootstrap.js"></script>
-
-    <script src="https://use.fontawesome.com/885f761feb.js"></script>
-    
-    <script src="../../js/dynamic_input_form.js"></script>
-
-    <style>
-        html, body {
-            width: 100%;
-            font-size: 14px;
-        }
-        .add {
-/*            width: 90vw;*/
-            width: 475px;
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-
-        }
-        .page-header {
-            margin-top: 20px;
-        }
-        .btn-success:focus,
-.btn-success.focus {
-  color: #fff !important;
-  background-color: #449d44 !important;
-  border-color: #255625 !important;
-}
-.btn-success:hover {
-  color: #fff !important;
-  background-color: #449d44 !important;
-  border-color: #398439 !important;
-}
-.btn-success:active,
-.btn-success.active,
-.open > .dropdown-toggle.btn-success {
-  color: #fff !important;
-  background-color: #449d44 !important;
-  border-color: #398439 !important;
-}
-.btn-danger:focus,
-.btn-danger.focus {
-  color: #fff !important;
-  background-color: #c9302c !important;
-  border-color: #761c19 !important;
-}
-.btn-danger:hover {
-  color: #fff !important;
-  background-color: #c9302c !important;
-  border-color: #ac2925 !important;
-}
-.btn-danger:active,
-.btn-danger.active,
-.open > .dropdown-toggle.btn-danger {
-  color: #fff !important;
-  background-color: #c9302c !important;
-  border-color: #ac2925 !important;
-}
-    </style>
 </head>
 <body>
 
@@ -84,7 +15,7 @@
         <div><?= $mandate->contexte; ?></div>
         <h4 class="page-header"><strong>Requirement</strong></h4>
         <div><?= $mandate->besoin; ?></div>
-        
+
         <?php if($mandate->external === true || $mandate->internal === true || $mandate->wireless === true): ?>
         <h4 class="page-header"><strong>Infrastructure</strong></h4>
         <?php if($mandate->external === true): ?>
@@ -149,6 +80,6 @@
         <?= $this->Form->end() ?>
     </fieldset>
 </div>
-    
+
 </body>
 </html>
