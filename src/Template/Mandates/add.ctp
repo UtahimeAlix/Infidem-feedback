@@ -6,7 +6,7 @@
         <legend class="legend"><?= __('Service offer') ?></legend>
         <?= $this->Form->input('name', array('class'=>'champ')) ?>
         <?= $this->Form->input('contexte', array('type'=>'textarea','label'=>'Context', 'class'=>'champ')) ?>
-        <?= $this->Form->input('besoin', array('label'=>'Requirement', 'class'=>'champ')) ?>
+        <?= $this->Form->input('besoin', array('type'=>'textarea','label'=>'Requirement', 'class'=>'champ')) ?>
         <legend class="legend"><?= __('Infrastructure') ?></legend>
         <?= $this->Form->input('external', array('class'=>'checkbox')) ?>
         <?= $this->Form->input('internal', array('class'=>'checkbox')) ?>

@@ -55,7 +55,7 @@
         </div>
         <button style="margin-top:18px" class="btn btn-sm btn-success add_web_url btn-right"><i class="fa fa-plus"></i></button>
         <div class="input_fields_web_url">
-            <div><input class="champ-text" type="text" name="mytext[]"></div>
+            <div><input class="champ-text" placeholder="URL" type="text" name="mytext[]"></div>
         </div>
         <?php endif; ?>
         <?php if($mandate->mobile === true): ?>
@@ -68,7 +68,7 @@
           <input class="form-control" type="password" name="web_password[]" id="web_password">
         </div>
         <div class="input_fields_wrap1">
-            <div><input class="champ-plein" type="text" name="mytext[]"></div>
+            <div><input class="champ-plein" placeholder="URL" type="text" name="mytext[]"></div>
         </div>
         <?php endif; ?>
         <?php if($mandate->review === true): ?>
