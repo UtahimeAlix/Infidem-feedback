@@ -6,10 +6,10 @@
 </head>
 <body>
 
-    <?php $this->assign('title', __("ROE")); ?>
+  <?php $this->assign('title', __("ROE")); ?>
 
 <div class="ods form">
-<?= $this->Form->create($mandate) ?>
+<form method="post" action="">
     <fieldset class="addRoe">
       <legend class="legend"><?= __('Règles d\'engagement') ?></legend>
       <br><br><br>
@@ -42,7 +42,7 @@
         </div>
         <?php endif; ?>
         <?php endif; ?>
-        <?php if($mandate->web === true || $mandate->mobile === true || $mandate->review === true): ?>
+      <?php if($mandate->web === true || $mandate->mobile === true || $mandate->review === true): ?>
         <h4 class="page-header"><strong>Applicatif</strong></h4>
         <?php if($mandate->web === true): ?>
         <h5>Application web</h5>
@@ -79,8 +79,8 @@
         <?php endif; ?>
         <?php endif; ?>
         <button type="submit" class="btn btn-primary btn-right">Save</button>
-        <?= $this->Form->end() ?>
     </fieldset>
+  </form>
 </div>
 
 </body>
