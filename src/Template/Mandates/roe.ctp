@@ -55,7 +55,7 @@
         </div>
         <button style="margin-top:18px" class="btn btn-sm btn-success add_web_url btn-right"><i class="fa fa-plus"></i></button>
         <div class="input_fields_web_url">
-            <div><input class="champ-text" placeholder="URL" type="text" name="mytext[]"></div>
+            <div><input class="champ-text" placeholder="URL" type="text" name="web_url[]"></div>
         </div>
         <?php endif; ?>
         <?php if($mandate->mobile === true): ?>
@@ -63,9 +63,9 @@
         <button class="btn btn-sm btn-success add_mobile_cred btn-right"><i class="fa fa-plus"></i></button>
         <div class="input_fields_mobile_cred form-group">
           <label for="web_login" class="field-name">Login:</label>
-          <input class="form-control" type="text" name="web_login[]" id="web_login">
+          <input class="form-control" type="text" name="mobile_login[]" id="web_login">
           <label for="web_password"  class="field-name">Password: </label>
-          <input class="form-control" type="password" name="web_password[]" id="web_password">
+          <input class="form-control" type="password" name="mobile_password[]" id="web_password">
         </div>
         <div class="input_fields_wrap1">
             <div><input class="champ-plein" placeholder="URL" type="text" name="mytext[]"></div>
