@@ -30,6 +30,7 @@ $cakeDescription = 'In Fidem feedback';
   <?= $this->Html->css('cake.css') ?>
   <?= $this->Html->css('style.css') ?>
   <?= $this->Html->css('roe.css') ?>
+  <?= $this->Html->css('advancement.css') ?>
 
   <?= $this->fetch('meta') ?>
   <?= $this->fetch('css') ?>
