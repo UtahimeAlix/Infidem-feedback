@@ -67,7 +67,7 @@ $(document).ready(function() {
       $(this).prop( "disabled", true );
       $.ajaxSetup({
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
-    })
+    });
       $.ajax({
             type:"POST",
             url:'/mandates/advancement/' + $('#mandate_id').text(),
