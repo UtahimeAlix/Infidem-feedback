@@ -2,6 +2,8 @@
 
 <br><br>
 <div class="ods form">
+  <span style="display: none;" id="mandate_id"><?= $mandate->id ?></span>
+  <span style="display: none;" id="mandate_state"><?= $mandate->state ?></span>
     <fieldset class="add">
         <legend class="legend"><?= __('Avancement') ?></legend>
 
@@ -16,3 +18,70 @@
         <table><div style="text-align: center; width:50px; height:30px; border: 1px solid #212121; border-radius: 5px; padding: 5px; margin: 0 auto;">0%</div></table>
     </fieldset>
 </div>
+
+<script>
+$(document).ready(function() {
+  switch(parseInt($('#mandate_state').text(), 10)) {
+    // case 0:
+    //
+    // break;
+    case 1:
+      $('#debute').prop( "disabled", true );
+      $('#middle').prop( "disabled", false );
+    break;
+    case 2:
+    $('#debute').prop( "disabled", true );
+    $('#endTest').prop( "disabled", false );
+    break;
+    case 3:
+    $('#debute').prop( "disabled", true );
+    $('#endAnalyze').prop( "disabled", false );
+    case 4:
+    $('#debute').prop( "disabled", true );
+    $('#endTest').prop( "disabled", false );
+    case 5:
+    $('#debute').prop( "disabled", true );
+    default:
+  }
+
+  $('.checkbox-advancement').change(function() {
+    if($(this).is(":checked")) {
+    switch($(this).attr('id')) {
+      case 'debute':
+        $('#middle').prop( "disabled", false );
+      break;
+      case 'middle':
+        $('#endTest').prop( "disabled", false );
+      break;
+      case 'endTest':
+        $('#endAnalyze').prop( "disabled", false );
+      break;
+      case 'endAnalyze':
+        $('#endReport').prop( "disabled", false );
+      break;
+      case 'endReport':
+      break;
+      default:
+//
+      }
+      $(this).prop( "disabled", true );
+      $.ajaxSetup({
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+      $.ajax({
+            type:"POST",
+            url:'/mandates/advancement/' + $('#mandate_id').text(),
+            success : function(data) {
+               alert(data);
+            },
+            error : function() {
+               alert("false");
+            }
+        });
+    }
+
+
+    });
+});
+
+</script>
