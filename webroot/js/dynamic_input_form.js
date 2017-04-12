@@ -15,7 +15,7 @@ $(document).ready(function() {
         e.preventDefault();
         if(count_ext < max_ext){
             count_ext++;
-            $(external).append('<div><button style="margin-top:2.5px !important; float:right;" class="btn btn-sm btn-danger remove_ext_ip"><i class="fa fa-times"></i></button><input  type="text" style="width:90%;" name="ext_ip[]"/></div>');
+            $(external).append('<div><button style="margin-top:2.5px !important; float:right;" class="btn btn-sm btn-danger remove_ext_ip"><i class="fa fa-times"></i></button><input type="text" style="width:90%;" name="ext_ip[]" placeholder="IP or URL"></div>');
         }
     });
     $(external).on("click",".remove_ext_ip", function(e){
@@ -37,7 +37,7 @@ $(document).ready(function() {
         e.preventDefault();
         if(count_int < max_int){
             count_int++;
-            $(internal).append('<div><button style="margin-top:2.5px !important; float:right;" class="btn btn-sm btn-danger remove_int_ip"><i class="fa fa-times"></i></button><input  type="text" style="width:90%;" name="int_ip[]"/></div>');
+            $(internal).append('<div><button style="margin-top:2.5px !important; float:right;" class="btn btn-sm btn-danger remove_int_ip"><i class="fa fa-times"></i></button><input  type="text" style="width:90%;" name="int_ip[]" placeholder="IP or URL"></div>');
         }
     });
     $(internal).on("click",".remove_int_ip", function(e){
@@ -59,7 +59,7 @@ $(document).ready(function() {
         e.preventDefault();
         if(count_ssid < max_ssid){
             count_ssid++;
-            $(wireless).append('<div><button style="margin-top:2.5px !important; float:right;" class="btn btn-sm btn-danger remove_ssid"><i class="fa fa-times"></i></button><input type="text" style="width:90%;" name="ssid[]"/></div>');
+            $(wireless).append('<div><button style="margin-top:2.5px !important; float:right;" class="btn btn-sm btn-danger remove_ssid"><i class="fa fa-times"></i></button><input type="text" style="width:90%;" name="ssid[]" placeholder="SSID"></div>');
         }
     });
     $(wireless).on("click",".remove_ssid", function(e){
@@ -72,21 +72,21 @@ $(document).ready(function() {
     * Max fields = 3
     *
     */
-    var max_web_cred      = 3;
-    var web_app         = $(".input_fields_web_cred");
-    var add_web_cred      = $(".add_web_cred");
-    var count_web_cred = 1;
-
-    $(add_web_cred).click(function(e){
-        e.preventDefault();
-        if(count_web_cred < max_web_cred){
-            count_web_cred++;
-            $(web_app).append('<div><button style="margin-top:17.5px !important; float:right;" class="btn btn-sm btn-danger remove_web_cred"><i class="fa fa-times"></i></button><label for="web_login" style="float:left; line-height:30px; font-size:14px;">Login:</label><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="web_login[]" id="web_login"><label for="web_password"  style="float:left; line-height:30px; font-size:14px;">Password: </label><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="web_password[]" id="web_password"></div>');
-        }
-    });
-    $(web_app).on("click",".remove_web_cred", function(e){
-        e.preventDefault(); $(this).parent('div').remove(); count_web_cred--;
-    });
+    // var max_web_cred      = 3;
+    // var web_app         = $(".input_fields_web_cred");
+    // var add_web_cred      = $(".add_web_cred");
+    // var count_web_cred = 1;
+    //
+    // $(add_web_cred).click(function(e){
+    //     e.preventDefault();
+    //     if(count_web_cred < max_web_cred){
+    //         count_web_cred++;
+    //         $(web_app).append('<div><button style="margin-top:17.5px !important; float:right;" class="btn btn-sm btn-danger remove_web_cred"><i class="fa fa-times"></i></button><h5 for="web_login" style="float:left; line-height:30px; font-size:14px;">Login:</h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="web_login[]" id="web_login"><h5 for="web_password"  style="float:left; line-height:30px; font-size:14px;">Password: </h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="web_password[]" id="web_password"></div>');
+    //     }
+    // });
+    // $(web_app).on("click",".remove_web_cred", function(e){
+    //     e.preventDefault(); $(this).parent('div').remove(); count_web_cred--;
+    // });
 
     /*
     *
@@ -103,7 +103,7 @@ $(document).ready(function() {
         e.preventDefault();
         if(count_web_url < max_web_url){
             count_web_url++;
-            $(web_url).append('<div><button style="margin-top:2.5px !important; float:right;" class="btn btn-sm btn-danger remove_web_url"><i class="fa fa-times"></i></button><input type="text" style="width:90%;" name="web_url[]"/></div>');
+            $(web_url).append('<div><button style="margin-top:47.5px !important; float:right;" class="btn btn-sm btn-danger remove_web_url"><i class="fa fa-times"></i></button><input type="text" style="width:90%;" name="web_url[]" placeholder="URL"><div><h5 for="web_login" style="float:left; font-size:14px;">Login:</h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="web_login[]" id="web_login"><h5 for="web_password" style="float:left; font-size:14px;">Mot de Passe: </h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="web_password[]" id="web_password"></div></div>');
         }
     });
     $(web_url).on("click",".remove_web_url", function(e){
@@ -125,12 +125,11 @@ $(document).ready(function() {
         e.preventDefault();
         if(count_mobile_cred < max_mobile_cred){
             count_mobile_cred++;
-            $(mobile_app).append('<div><button style="margin-top:17.5px !important; float:right;" class="btn btn-sm btn-danger remove_mobile_cred"><i class="fa fa-times"></i></button><label for="web_login" style="float:left; line-height:30px; font-size:14px;">Login:</label><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="mobile_login[]" id="web_login"><label for="web_password"  style="float:left; line-height:30px; font-size:14px;">Password: </label><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="mobile_password[]" id="web_password"></div>');
+            $(mobile_app).append('<div><button style="margin-top:17.5px !important; float:right;" class="btn btn-sm btn-danger remove_mobile_cred"><i class="fa fa-times"></i></button><h5 for="web_login" style="float:left; font-size:14px;">Login:</h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="mobile_login[]" id="web_login"><h5 for="web_password" style="float:left; font-size:14px;">Mot de Passe: </h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="mobile_password[]" id="web_password"></div>');
         }
     });
     $(mobile_app).on("click",".remove_mobile_cred", function(e){
         e.preventDefault(); $(this).parent('div').remove(); count_mobile_cred--;
     });
 
-    // END OF FILE
 });

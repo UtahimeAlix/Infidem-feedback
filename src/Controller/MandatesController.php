@@ -80,28 +80,22 @@ class MandatesController extends AppController
         }
       }
       if ($mandate->web) {
-        if (count($web_logins) != 0 && count($web_passwords) != 0) {
           $counter_web = 0;
-          foreach($web_logins as $web_login)
-          {
-            $webRecord = $webTable->newEntity();
-            $webRecord->login = $web_login;
-            $webRecord->password = $web_passwords[$counter_web];
-            $webRecord->mandate_id = $mandate->id;
-            $webTable->save($webRecord);
-            $counter_web++;
-          }
-        }
-        if (count($web_urls) != 0) {
           foreach($web_urls as $web_url)
           {
             $webUrl = $webTable->newEntity();
-            $webUrl->url = $web_url;
+            if ($web_logins[$counter_web] != null && $web_url != null && $web_passwords[$counter_web] != null) {
+              $webUrl->url = $web_url;
+              $webUrl->login = $web_logins[$counter_web];
+              $webUrl->password = $web_passwords[$counter_web];
+            } elseif ($web_logins[$counter_web] === null && $web_url != null && $web_passwords[$counter_web] === null) {
+              $webUrl->url = $web_url;
+            }
             $webUrl->mandate_id = $mandate->id;
             $webTable->save($webUrl);
+            $counter_web++;
           }
         }
-      }
       if ($mandate->mobile) {
         if (count($mobile_logins) != 0 && count($mobile_passwords) != 0) {
           $counter_mobile = 0;

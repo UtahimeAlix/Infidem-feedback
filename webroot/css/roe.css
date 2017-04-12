@@ -67,7 +67,7 @@ html, body {
 }
 
 .btn-add {
-  margin-top:7px;
+  margin-top:5px;
   float:right;
 }
 
@@ -91,7 +91,6 @@ html, body {
 
 .field-name {
   float:left;
-  line-height:30px;
   font-size:14px;
 }
 
