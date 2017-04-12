@@ -1,6 +1,7 @@
 <?php $this->assign('title', __("Avancement")); ?>
 
 <head>
+  <?= $this->Html->css('advancement.css') ?>
   <script src="/infidem-feedback/webroot/js/advancement.js"></script>
 </head>
 
@@ -11,11 +12,11 @@
     <fieldset class="add">
         <legend class="legend"><?= __('Avancement') ?></legend>
 
-        <label for="debute" style="padding-top: 10px;">Tests débutés</label><input class="checkbox-advancement" type="checkbox" name="checkbox" id="debute" value="value"><br>
-        <label for="middle" style="padding-top: 10px;">Tests semi-complétés</label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="middle" value="value"><br>
-        <label for="endTest" style="padding-top: 10px;">Tests terminés</label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endTest" value="value"><br>
-        <label for="endAnalyze" style="padding-top: 10px;">Analyse terminée</label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endAnalyze" value="value"><br>
-        <label for="endreport" style="padding-top: 10px;">Rapport terminé</label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endReport" value="value"><br>
+        <label for="debute" style="padding-top: 10px;"><?= __('Tests débutés') ?></label><input class="checkbox-advancement" type="checkbox" name="checkbox" id="debute" value="value"><br>
+        <label for="middle" style="padding-top: 10px;"><?= __('Tests semi-complétés') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="middle" value="value"><br>
+        <label for="endTest" style="padding-top: 10px;"><?= __('Tests temrinés') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endTest" value="value"><br>
+        <label for="endAnalyze" style="padding-top: 10px;"><?= __('Analyse terminée') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endAnalyze" value="value"><br>
+        <label for="endreport" style="padding-top: 10px;"><?= __('Rapport terminé') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endReport" value="value"><br>
 
         <br>
 

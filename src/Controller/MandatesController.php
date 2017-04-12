@@ -133,5 +133,10 @@ public function advancement($mandateId)
   $this->set('mandate', $mandate);
 }
 
+public function planAction($mandateId) {
+  $mandate = $this->Mandates->get($mandateId);
+  $this->set('mandate', $mandate);
+}
+
 }
 ?>
