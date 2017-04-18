@@ -45,7 +45,6 @@ $cakeDescription = 'In Fidem feedback';
   <link rel="stylesheet" href="/infidem-feedback/webroot/css/bootstrap.css"/>
   <script src="/infidem-feedback/webroot/js/bootstrap.js"></script>
   <script src="https://use.fontawesome.com/885f761feb.js"></script>
-  <script src="/infidem-feedback/webroot/js/dynamic_input_form.js"></script>
 </head>
 
 <body>

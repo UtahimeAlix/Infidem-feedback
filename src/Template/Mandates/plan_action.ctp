@@ -18,6 +18,7 @@
           <col width="10px">
           <col width="30px">
           <col width="7px">
+          <col width="10px">
           <tr>
             <th>ID</td>
             <th><?= __('Nom') ?></td>
@@ -26,15 +27,7 @@
             <th><?= __('Date de correction prévue') ?></td>
             <th><?= __('Commentaires') ?></td>
             <th><?= __('Terminé') ?></td>
-          </tr>
-          <tr>
-            <td>ID</td>
-            <td>Nom</th>
-            <td>Cible</th>
-            <td>Correctif</th>
-            <td>Date</th>
-            <td>Commentaires</th>
-            <td class="center-td"><input style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="termine" value="value"></td>
+              <th><?= __('À valider?') ?></td>
           </tr>
           <tr>
             <td>ID</td>
@@ -44,6 +37,17 @@
             <td>Date</td>
             <td>Commentaires</td>
             <td class="center-td"><input style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="termine" value="value"></td>
+            <td class="center-td"><input style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="valide" value="value"></td>
+          </tr>
+          <tr>
+            <td>ID</td>
+            <td>Nom</td>
+            <td>Cible</td>
+            <td>Correctif</td>
+            <td>Date</td>
+            <td>Commentaires</td>
+            <td class="center-td"><input style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="termine" value="value"></td>
+            <td class="center-td"><input style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="valide" value="value"></td>
           </tr>
         </table>
 

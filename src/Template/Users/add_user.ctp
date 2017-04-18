@@ -16,7 +16,7 @@
         'label' => __("Role"),
         'class' => 'champ'
     ]); ?><br>
-    <button type="submit" class="btn-info btn-login" ><?= __('S\'inscrire) ?></button>
+    <button type="submit" class="btn-info btn-login" ><?= __('S\'inscrire') ?></button>
         <?= $this->Form->end() ?>
     </fieldset>
 </div>

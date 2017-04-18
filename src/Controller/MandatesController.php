@@ -16,7 +16,7 @@ class MandatesController extends AppController
   {
     $accesTable = TableRegistry::get('acces');
     $mandates = $this->Mandates->find('all');
-    $acces = $this->Acces->find('all');
+    $acces = $accesTable->find('all');
     $this->set(compact('mandates'));
     $this->set(compact('acces'));
   }
