@@ -40,6 +40,7 @@ class MandatesController extends AppController
   public function roe($mandateId)
   {
     $mandate = $this->Mandates->get($mandateId);
+    $data = array();
     $externalTable = TableRegistry::get('vuln_external');
     $internalTable = TableRegistry::get('vuln_internal');
     $wirelessTable = TableRegistry::get('vuln_wireless');
@@ -114,7 +115,11 @@ class MandatesController extends AppController
         }
       }
     }
-    $this->set('mandate', $mandate);
+    $extIps = $externalTable->find('all')
+    ->where(['mandate_id =' => $mandate->id]);
+    // $data['mandate'] = json_encode($mandate);
+    // $data['extIPs'] = json_encode($extIps);
+    // $this->set('data', $mandate);
   }
 
 public function advancement($mandateId)
