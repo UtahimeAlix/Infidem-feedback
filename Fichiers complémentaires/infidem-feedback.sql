@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 30 Mars 2017 à 17:07
+-- Généré le :  Mar 18 Avril 2017 à 15:32
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -35,6 +35,18 @@ CREATE TABLE `acces` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `code_review`
+--
+
+CREATE TABLE `code_review` (
+  `id` int(11) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `mandate_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `mandates`
 --
 
@@ -58,7 +70,7 @@ CREATE TABLE `mandates` (
 --
 
 INSERT INTO `mandates` (`id`, `name`, `state`, `contexte`, `besoin`, `external`, `internal`, `wireless`, `web`, `mobile`, `review`, `validation`) VALUES
-(2, 'Test', 0, 'test', 'test', 0, 1, 0, 0, 0, 0, 1);
+(2, 'Test', 2, 'test', 'test', 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -105,8 +117,157 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `compagny_name`, `email`, `image`, `role_id`, `password_reset_token`, `hashval`) VALUES
-(1, 'Utahime', '$2y$10$o8iou4b21uIEBejrDvg65.2DycMRnK1ndXOt.ZlC3Un2WziqlGZTi', '', '', 'alix.berson@gmail.com', NULL, 1, '060c72878581704db715765b174f34897cde87c7', 'c50fe32e42977c4c1141fd5f4c553a64b313624a'),
-(2, 'pandastein', '$2y$10$KV.qaHiPftt0aXY4W9CBbOAJd7q/7zHF.GvZMpEQPOiG5UjV.HamG', 'Ouin', 'LOL', 'franck.jorge@hotmail.fr', '', 1, NULL, NULL);
+(6, 'pandastein', '$2y$10$q.vZQ35Yoe0shg08IVB.HOUKv0thJknp6q4BdYJVuDFSp2ePb0F1a', 'Name', 'Company', 'franck.jorge@hotmail.fr', '', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vuln_external`
+--
+
+CREATE TABLE `vuln_external` (
+  `id` int(11) NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `url` varchar(100) DEFAULT NULL,
+  `mandate_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `vuln_external`
+--
+
+INSERT INTO `vuln_external` (`id`, `ip`, `url`, `mandate_id`) VALUES
+(1, 'Ext1', NULL, 2),
+(2, 'Ext1', NULL, 2),
+(3, 'Ext1', NULL, 2),
+(4, '', NULL, 2),
+(5, '', NULL, 2),
+(6, '', NULL, 2),
+(7, '', NULL, 2),
+(8, '', NULL, 2),
+(9, '', NULL, 2),
+(10, '', NULL, 2),
+(11, '', NULL, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vuln_internal`
+--
+
+CREATE TABLE `vuln_internal` (
+  `id` int(11) NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `url` varchar(100) DEFAULT NULL,
+  `mandate_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `vuln_internal`
+--
+
+INSERT INTO `vuln_internal` (`id`, `ip`, `url`, `mandate_id`) VALUES
+(1, 'Test1', NULL, 2),
+(2, 'Test1', NULL, 2),
+(3, 'Test1', NULL, 2),
+(4, 'Test1', NULL, 2),
+(5, '', NULL, 2),
+(6, '', NULL, 2),
+(7, '', NULL, 2),
+(8, '', NULL, 2),
+(9, '', NULL, 2),
+(10, '', NULL, 2),
+(11, '', NULL, 2),
+(12, '', NULL, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vuln_mobile`
+--
+
+CREATE TABLE `vuln_mobile` (
+  `id` int(11) NOT NULL,
+  `url` varchar(200) DEFAULT NULL,
+  `login` varchar(50) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `mandate_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `vuln_mobile`
+--
+
+INSERT INTO `vuln_mobile` (`id`, `url`, `login`, `password`, `mandate_id`) VALUES
+(1, NULL, 'lol', 'lol', 2),
+(2, NULL, 'lol', 'lol', 2),
+(3, NULL, '', '', 2),
+(4, NULL, '', '', 2),
+(5, NULL, '', '', 2),
+(6, NULL, '', '', 2),
+(7, NULL, '', '', 2),
+(8, NULL, '', '', 2),
+(9, NULL, '', '', 2),
+(10, NULL, '', '', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vuln_web`
+--
+
+CREATE TABLE `vuln_web` (
+  `id` int(11) NOT NULL,
+  `url` varchar(200) DEFAULT NULL,
+  `login` varchar(50) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `mandate_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `vuln_web`
+--
+
+INSERT INTO `vuln_web` (`id`, `url`, `login`, `password`, `mandate_id`) VALUES
+(1, 'franckj.com', 'pandastein', 'zeroshiki', 2),
+(2, NULL, NULL, NULL, 2),
+(3, 'franckj.com', 'Ouin', 'ouin', 2),
+(4, NULL, NULL, NULL, 2),
+(5, NULL, NULL, NULL, 2),
+(6, NULL, NULL, NULL, 2),
+(7, NULL, NULL, NULL, 2),
+(8, NULL, NULL, NULL, 2),
+(9, NULL, NULL, NULL, 2),
+(10, NULL, NULL, NULL, 2),
+(11, NULL, NULL, NULL, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vuln_wireless`
+--
+
+CREATE TABLE `vuln_wireless` (
+  `id` int(11) NOT NULL,
+  `ssid` varchar(50) NOT NULL,
+  `mandate_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `vuln_wireless`
+--
+
+INSERT INTO `vuln_wireless` (`id`, `ssid`, `mandate_id`) VALUES
+(1, 'WL1', 2),
+(2, 'WL1', 2),
+(3, '', 2),
+(4, '', 2),
+(5, '', 2),
+(6, '', 2),
+(7, '', 2),
+(8, '', 2),
+(9, '', 2),
+(10, '', 2);
 
 --
 -- Index pour les tables exportées
@@ -119,6 +280,12 @@ ALTER TABLE `acces`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `mandate_id` (`mandate_id`);
+
+--
+-- Index pour la table `code_review`
+--
+ALTER TABLE `code_review`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `mandates`
@@ -138,6 +305,36 @@ ALTER TABLE `roles`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_id` (`role_id`);
+
+--
+-- Index pour la table `vuln_external`
+--
+ALTER TABLE `vuln_external`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `vuln_internal`
+--
+ALTER TABLE `vuln_internal`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `vuln_mobile`
+--
+ALTER TABLE `vuln_mobile`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `vuln_web`
+--
+ALTER TABLE `vuln_web`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `vuln_wireless`
+--
+ALTER TABLE `vuln_wireless`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -162,7 +359,32 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `vuln_external`
+--
+ALTER TABLE `vuln_external`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT pour la table `vuln_internal`
+--
+ALTER TABLE `vuln_internal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT pour la table `vuln_mobile`
+--
+ALTER TABLE `vuln_mobile`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT pour la table `vuln_web`
+--
+ALTER TABLE `vuln_web`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT pour la table `vuln_wireless`
+--
+ALTER TABLE `vuln_wireless`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Contraintes pour les tables exportées
 --

@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+  $.ajax({
+                  type: 'get',
+                  success: function (data) {
+                      alert(data);
+                  }
+              })
+
     /*
     *
     * Add/Remove external IP dynamically
@@ -66,34 +73,6 @@ $(document).ready(function() {
         e.preventDefault(); $(this).parent('div').remove(); count_ssid--;
     });
 
-    /*
-    *
-    * Add/Remove web App credentials dynamically
-    * Max fields = 3
-    *
-    */
-    // var max_web_cred      = 3;
-    // var web_app         = $(".input_fields_web_cred");
-    // var add_web_cred      = $(".add_web_cred");
-    // var count_web_cred = 1;
-    //
-    // $(add_web_cred).click(function(e){
-    //     e.preventDefault();
-    //     if(count_web_cred < max_web_cred){
-    //         count_web_cred++;
-    //         $(web_app).append('<div><button style="margin-top:17.5px !important; float:right;" class="btn btn-sm btn-danger remove_web_cred"><i class="fa fa-times"></i></button><h5 for="web_login" style="float:left; line-height:30px; font-size:14px;">Login:</h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="web_login[]" id="web_login"><h5 for="web_password"  style="float:left; line-height:30px; font-size:14px;">Password: </h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="web_password[]" id="web_password"></div>');
-    //     }
-    // });
-    // $(web_app).on("click",".remove_web_cred", function(e){
-    //     e.preventDefault(); $(this).parent('div').remove(); count_web_cred--;
-    // });
-
-    /*
-    *
-    * Add/Remove web App URL dynamically
-    * Max fields = 7
-    *
-    */
     var max_web_url      = 7;
     var web_url         = $(".input_fields_web_url");
     var add_web_url      = $(".add_web_url");
