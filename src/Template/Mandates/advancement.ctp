@@ -2,10 +2,12 @@
 
 <head>
   <?= $this->Html->css('advancement.css') ?>
-  <script src="/infidem-feedback/webroot/js/advancement.js"></script>
 </head>
 
-<br><br>
+<br>
+<a href="/infidem-feedback/mandates/add"><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"></a>
+
+<br>
 <div class="ods form">
   <span style="display: none;" id="mandate_id"><?= $mandate->id ?></span>
   <span style="display: none;" id="mandate_state"><?= $mandate->state ?></span>
@@ -23,3 +25,6 @@
         <table><div id="ad" style="text-align: center; width:50px; height:30px; border: 1px solid #212121; border-radius: 5px; padding: 5px; margin: 0 auto;">0%</div></table>
     </fieldset>
 </div>
+
+<script type="text/javascript">var advancementUrl = '<?= $this->Url->Build(['controller' => 'Mandates', 'action' => 'advancement']) ?>';</script>
+<?= $this->Html->script('advancement.js') ?>

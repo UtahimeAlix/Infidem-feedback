@@ -1,5 +1,8 @@
 <?php $this->assign('title', __("ODS")); ?>
 
+<br>
+<a href="/infidem-feedback/mandates/add"><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"></a>
+
 <div class="ods form">
 <?= $this->Form->create($mandate) ?><br>
     <fieldset class="add">

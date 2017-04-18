@@ -116,13 +116,13 @@ class MandatesController extends AppController
 
 public function advancement($mandateId)
 {
-  /**if ($this->request->is('ajax')) {
+  if ($this->request->is('ajax')) {
     $mandate = $this->Mandates->get($mandateId);
     $mandate->state = $mandate->state + 1;
     if ($this->Mandates->save($mandate)) {
       $this->set('mandate', $mandate);
     }
-  }**/
+  }
   $mandate = $this->Mandates->get($mandateId);
   $this->set('mandate', $mandate);
 }

@@ -70,21 +70,21 @@ $(document).ready(function() {
       default:
 
       }
-      /**$(this).prop( "disabled", true );
+      $(this).prop( "disabled", true );
       $.ajaxSetup({
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
     })
       $.ajax({
             type:"POST",
             data: {$mandateId: $('#mandate_id').text()},
-            url:'/mandates/advancement/' + $('#mandate_id').text(),
+            url: advancementUrl + '/' + $('#mandate_id').text(),
             success : function(data) {
                alert(data);
             },
             error : function() {
                alert("false");
             }
-        });**/
+        });
     }
 
 
