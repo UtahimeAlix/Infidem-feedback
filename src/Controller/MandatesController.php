@@ -14,8 +14,11 @@ class MandatesController extends AppController
 
   public function index()
   {
+    $accesTable = TableRegistry::get('acces');
     $mandates = $this->Mandates->find('all');
+    $acces = $this->Acces->find('all');
     $this->set(compact('mandates'));
+    $this->set(compact('acces'));
   }
 
   public function add()
