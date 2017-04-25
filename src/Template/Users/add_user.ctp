@@ -1,7 +1,9 @@
 <?php $this->assign('title', __("Add User")); ?>
 <div class="users form">
 <?= $this->Form->create($user) ?><br>
-<img class="logo-img" src="../webroot/img/logo.jpg" alt="logo" style="align: middle;"><br>
+<a href="/infidem-feedback/mandates/index"><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"></a>
+<br>
+
     <fieldset class="add">
         <legend class="legend"><?= __('Ajouter un utilisateur') ?></legend>
         <?= $this->Form->input('username', array('label'=>'Pseudo','class'=>'champ')) ?>

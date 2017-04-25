@@ -181,6 +181,11 @@ public function delete($id)
     return $this->redirect(['action' => 'index']);
   }
 }
+
+public function admin() {
+  $users = $this->Users->find('all');
+  $this->set(compact('users'));
+}
 }
 
 ?>
