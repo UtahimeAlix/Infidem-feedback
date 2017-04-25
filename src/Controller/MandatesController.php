@@ -21,6 +21,17 @@ class MandatesController extends AppController
     $this->set(compact('acces'));
   }
 
+  public function listMandates($userId)
+  {
+
+    $accesTable = TableRegistry::get('acces');
+    $mandates = $this->Mandates->find('all');
+    $acces = $accesTable->find('all');
+    $this->set(compact('mandates'));
+    $this->set(compact('acces'));
+    $this->set(compact('userId'));
+  }
+
   public function add()
   {
     $mandate = $this->Mandates->newEntity();
