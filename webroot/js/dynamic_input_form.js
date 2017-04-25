@@ -3,7 +3,6 @@ $(document).ready(function() {
   $.ajax({
                   type: 'get',
                   success: function (data) {
-                      alert(data);
                   }
               })
 

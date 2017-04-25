@@ -141,6 +141,13 @@ public function planAction($mandateId) {
 }
 
 public function validation($mandateId) {
+  if ($this->request->is('ajax')) {
+    $mandate = $this->Mandates->get($mandateId);
+    $mandate->validation_state = $mandate->validation_state + 1;
+    if ($this->Mandates->save($mandate)) {
+      $this->set('mandate', $mandate);
+    }
+  }
   $mandate = $this->Mandates->get($mandateId);
   $this->set('mandate', $mandate);
 }

@@ -79,7 +79,6 @@ $(document).ready(function() {
             data: {$mandateId: $('#mandate_id').text()},
             url: advancementUrl + '/' + $('#mandate_id').text(),
             success : function(data) {
-               alert(data);
             },
             error : function() {
                alert("false");
