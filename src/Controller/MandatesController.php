@@ -140,5 +140,10 @@ public function planAction($mandateId) {
   $this->set('mandate', $mandate);
 }
 
+public function validation($mandateId) {
+  $mandate = $this->Mandates->get($mandateId);
+  $this->set('mandate', $mandate);
+}
+
 }
 ?>

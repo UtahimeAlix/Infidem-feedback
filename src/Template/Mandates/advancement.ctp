@@ -16,7 +16,7 @@
 
         <label for="debute" style="padding-top: 10px;"><?= __('Tests débutés') ?></label><input class="checkbox-advancement" type="checkbox" name="checkbox" id="debute" value="value"><br>
         <label for="middle" style="padding-top: 10px;"><?= __('Tests semi-complétés') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="middle" value="value"><br>
-        <label for="endTest" style="padding-top: 10px;"><?= __('Tests temrinés') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endTest" value="value"><br>
+        <label for="endTest" style="padding-top: 10px;"><?= __('Tests terminés') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endTest" value="value"><br>
         <label for="endAnalyze" style="padding-top: 10px;"><?= __('Analyse terminée') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endAnalyze" value="value"><br>
         <label for="endreport" style="padding-top: 10px;"><?= __('Rapport terminé') ?></label><input disabled="disabled" class="checkbox-advancement" type="checkbox" name="checkbox" id="endReport" value="value"><br>
 

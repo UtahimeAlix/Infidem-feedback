@@ -22,3 +22,7 @@
   background-color: #5BC0DE;
   padding:5px;
 }
+
+.btn-add {
+  float: left;
+}

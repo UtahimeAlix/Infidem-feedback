@@ -40,7 +40,9 @@
               <h6 class="element"><a href="/infidem-feedback/mandates/roe/<?php echo $mandate->id;?>">- ROE</a></h6>
             <?php endif ?>
             <h6 class="element"><a href="/infidem-feedback/mandates/advancement/<?php echo $mandate->id;?>">- Avancement</a></h6>
+            <h6 class="element"><a href="/infidem-feedback/mandates/plan_action/<?php echo $mandate->id;?>">- Plan d'action</a></h6>
         <?php endif; ?>
+
       <?php endforeach;
     endforeach;
     else: ?>
