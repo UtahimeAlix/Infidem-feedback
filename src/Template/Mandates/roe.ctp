@@ -56,13 +56,13 @@
           <div class="input_fields_mobile_cred form-group">
           </div>
           <div class="input_fields_wrap1">
-              <div><input class="champ-plein" placeholder="URL" type="text" name="url_app"></div>
+              <div><input class="champ-plein" placeholder="URL" type="text" name="mobile_url" id="mobile_url"></div>
           </div>
           <?php endif; ?>
           <?php if($mandate->review === true): ?>
           <h5><strong>Revue de code</strong></h5>
           <div class="input_fields_wrap2">
-              <div><input class="champ-plein" type="text" name="code_review" placeholder="URL"></div>
+              <div><input class="champ-plein" type="text" name="review_url" id="review_url" placeholder="URL"></div>
           </div>
           <?php endif; ?>
           <?php endif; ?>

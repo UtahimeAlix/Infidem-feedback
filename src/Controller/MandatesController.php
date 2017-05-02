@@ -11,7 +11,6 @@ class MandatesController extends AppController
   {
     parent::initialize();
     $this->loadComponent('Flash');
-    // $this->loadComponent('RequestHandler');
   }
 
   public function index()
@@ -74,6 +73,7 @@ class MandatesController extends AppController
     $wirelessTable = TableRegistry::get('vuln_wireless');
     $mobileTable = TableRegistry::get('vuln_mobile');
     $webTable = TableRegistry::get('vuln_web');
+    $reviewTable = TableRegistry::get('code_review');
 
     $extIps = $externalTable->find('all')
     ->where(['mandate_id =' => $mandateId]);
@@ -85,11 +85,14 @@ class MandatesController extends AppController
     ->where(['mandate_id =' => $mandateId]);
     $mobileIps = $mobileTable->find('all')
     ->where(['mandate_id =' => $mandateId]);
+    $reviewUrl = $reviewTable->find('all')
+    ->where(['mandate_id =' => $mandateId]);
     $datas['external'] = $extIps;
     $datas['internal'] = $intIps;
     $datas['wireless'] = $wlIps;
     $datas['web'] = $webIps;
     $datas['mobile'] = $mobileIps;
+    $datas['review'] = $reviewUrl;
 
     $this->autoRender = false;
     $this->set('_serialize', 'data');
@@ -104,12 +107,14 @@ class MandatesController extends AppController
     $wirelessTable = TableRegistry::get('vuln_wireless');
     $mobileTable = TableRegistry::get('vuln_mobile');
     $webTable = TableRegistry::get('vuln_web');
+    $reviewTable = TableRegistry::get('code_review');
     if ($this->request->is('post')) {
       $externalTable->deleteAll(['mandate_id' => $mandateId]);
       $internalTable->deleteAll(['mandate_id' => $mandateId]);
       $wirelessTable->deleteAll(['mandate_id' => $mandateId]);
       $webTable->deleteAll(['mandate_id' => $mandateId]);
       $mobileTable->deleteAll(['mandate_id' => $mandateId]);
+      $reviewTable->deleteAll(['mandate_id' => $mandateId]);
 
       $external_ips = $this->request->data['ext_ip'];
       $internal_ips = $this->request->data['int_ip'];
@@ -119,6 +124,8 @@ class MandatesController extends AppController
       $web_urls = $this->request->data['web_url'];
       $mobile_logins = $this->request->data['mobile_login'];
       $mobile_passwords = $this->request->data['mobile_password'];
+      $mobile_url = $this->request->data['mobile_url'];
+      $review_url = $this->request->data['review_url'];
 
       if ($mandate->external) {
         foreach($external_ips as $external_ip)
@@ -170,6 +177,7 @@ class MandatesController extends AppController
           foreach($mobile_logins as $mobile_login)
           {
             $mobileRecord = $mobileTable->newEntity();
+            $mobileRecord->url = $mobile_url;
             $mobileRecord->login = $mobile_login;
             $mobileRecord->password = $mobile_passwords[$counter_mobile];
             $mobileRecord->mandate_id = $mandate->id;
@@ -178,9 +186,13 @@ class MandatesController extends AppController
           }
         }
       }
+      if ($mandate->review) {
+            $reviewRecord = $reviewTable->newEntity();
+            $reviewRecord->url = $review_url;
+            $reviewRecord->mandate_id = $mandate->id;
+            $reviewTable->save($reviewRecord);
+      }
     }
-    $extIps = $externalTable->find('all')
-    ->where(['mandate_id =' => $mandate->id]);
     $this->set('mandate', $mandate);
   }
 

@@ -87,10 +87,19 @@ $(document).ready(function() {
                       } else {
                         $(mobile_app).append('<div><button style="margin-top:17.5px !important; float:right;" class="btn btn-sm btn-danger remove_mobile_cred"><i class="fa fa-times"></i></button><h5 for="web_login" style="float:left; font-size:14px;">Login:</h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="mobile_login[]" id="web_login" value="'+data.mobile[i]['login']+'"><h5 for="web_password" style="float:left; font-size:14px;">Mot de Passe: </h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="mobile_password[]" id="web_password" value="'+data.mobile[i]['password']+'"></div>');
                       }
+                      $('#mobile_url').val(data.mobile[i]['url']);
                     }
                   } else {
                     $(mobile_app).append('<div><button style="margin-top:17.5px !important; float:right;" class="btn btn-sm btn-danger remove_mobile_cred"><i class="fa fa-times"></i></button><h5 for="web_login" style="float:left; font-size:14px;">Login:</h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="text" name="mobile_login[]" id="web_login"><h5 for="web_password" style="float:left; font-size:14px;">Mot de Passe: </h5><input class="form-control" style="float:left; width:25%; margin-left: 10px; margin-right: 10px;" type="password" name="mobile_password[]" id="web_password"></div>');
+                    $('#mobile_url').val('');
                   }
+
+                  if (data.review.length > 0) {
+                    $('#review_url').val(data.review[0]['url']);
+                  } else {
+                    $('#review_url').val('');
+                  }
+
                 }
               });
 
