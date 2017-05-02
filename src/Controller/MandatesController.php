@@ -16,8 +16,22 @@ class MandatesController extends AppController
 
   public function index()
   {
+    $accesTable = TableRegistry::get('acces');
     $mandates = $this->Mandates->find('all');
+    $acces = $accesTable->find('all');
     $this->set(compact('mandates'));
+    $this->set(compact('acces'));
+  }
+
+  public function listMandates($userId)
+  {
+
+    $accesTable = TableRegistry::get('acces');
+    $mandates = $this->Mandates->find('all');
+    $acces = $accesTable->find('all');
+    $this->set(compact('mandates'));
+    $this->set(compact('acces'));
+    $this->set(compact('userId'));
   }
 
   public function add()
@@ -170,6 +184,18 @@ public function advancement($mandateId)
 }
 
 public function planAction($mandateId) {
+  $mandate = $this->Mandates->get($mandateId);
+  $this->set('mandate', $mandate);
+}
+
+public function validation($mandateId) {
+  if ($this->request->is('ajax')) {
+    $mandate = $this->Mandates->get($mandateId);
+    $mandate->validation_state = $mandate->validation_state + 1;
+    if ($this->Mandates->save($mandate)) {
+      $this->set('mandate', $mandate);
+    }
+  }
   $mandate = $this->Mandates->get($mandateId);
   $this->set('mandate', $mandate);
 }

@@ -9,7 +9,7 @@
   <?php $this->assign('title', __("ROE")); ?>
 
   <br>
-  <a href="/infidem-feedback/mandates/add"><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"></a>
+  <a href="/infidem-feedback/mandates/index"><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"></a>
   <br>
 
 <div id="myroe" data-id="<?= $mandate->id; ?>" class="ods form">

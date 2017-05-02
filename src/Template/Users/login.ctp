@@ -10,7 +10,7 @@
           <?= $this->Form->input('password', array('label'=>'Mot de passe','class'=>'champ')) ?>
           <?= $this->Html->link(__("Mot de passe oublié?"),['controller'=>'Users','action'=>'forgotPassword'], array('style'=>'font-size: 10px; height:20px'));?>
           <br>
-          <button type="submit" class="btn-info btn-login" ><?= __('Se connecter') ?></button>
+          <button type="submit" class="btn-info btn-login" ><?= __('Connexion') ?></button>
           <?= $this->Form->end() ?>
 
           <legend class="legend"><?= __("Nouvel utilisateur") ?></legend><br><br><br><br>

@@ -1,4 +1,4 @@
-<?php $this->assign('title', __("Avancement")); ?>
+<?php $this->assign('title', __("Liste des mandats")); ?>
 
 <br>
 <a href="/infidem-feedback/mandates/index"><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"></a>
@@ -6,11 +6,11 @@
 
 <div class="ods form">
   <fieldset class="add">
-    <legend class="legend"><?= __('En cours') ?></legend><br><br>
+    <legend class="legend"><?= __('Liste des mandats') ?></legend><br><br>
     <?php
     if(!empty($mandates)): foreach($mandates as $mandate): ?>
     <?php foreach($acces as $mandateAcces): ?>
-      <?php if ($this->request->session()->read('Auth.User.id') == $mandateAcces->user_id && $mandateAcces->mandate_id == $mandate->id): ?>
+      <?php if ($userId == $mandateAcces->user_id && $mandateAcces->mandate_id == $mandate->id): ?>
               <h5>
                 ● <?php echo $mandate->name;
                 switch ($mandate->state) {
