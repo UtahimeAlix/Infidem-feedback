@@ -195,6 +195,23 @@ public function advancement($mandateId)
   $this->set('mandate', $mandate);
 }
 
+public function planActionDatas() {
+  $mandateId = $this->request->data['data'];
+  $datas = array();
+  $datas['user'] = $userId = $this->Auth->user();
+
+  $actionTable = TableRegistry::get('action_plan');
+
+  $actions = $actionTable->find('all')
+  ->where(['mandate_id =' => $mandateId]);
+  $datas['actions'] = $actions;
+
+  // Date::setJsonEncodeFormat('yyyy-MM-dd');
+  $this->autoRender = false;
+  $this->set('_serialize', 'data');
+  echo json_encode($datas);
+}
+
 public function planAction($mandateId) {
   $mandate = $this->Mandates->get($mandateId);
   $this->set('mandate', $mandate);
