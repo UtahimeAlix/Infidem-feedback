@@ -14,7 +14,7 @@
 
 <?php if ($this->request->session()->read('Auth.User.role_id') == 1): ?>
   <br><br><br><a href="/infidem-feedback/users/index"><?= __('- Liste des utilisateurs') ?></a><br>
-  <?= $this->Html->link('- Assigner un utilisateur à un mandat', ['controller' => 'mandates', 'action' => 'assignation'], array('style' => 'font-size: 15px;')) ?>
+  <?= $this->Html->link('- Assigner un utilisateur à un mandat', ['controller' => 'acces', 'action' => 'add'], array('style' => 'font-size: 15px;')) ?>
 <?php else: ?>
   <br><br><br><label><?= __('Vous n\'êtes pas autorisé à accéder à cette page. Pour plus d\'informations, contacter un administrateur.') ?><label>
 <?php endif ?>

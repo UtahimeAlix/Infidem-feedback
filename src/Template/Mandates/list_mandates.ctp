@@ -36,6 +36,7 @@
                 ?>
                 <?php echo $advancement; ?>
               </h5>
+              <h6 class="element"><a href="/infidem-feedback/mandates/edit/<?php echo $mandate->id;?>"><?= __('- ODS') ?></a></h6>
               <?php if ($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 4): ?>
               <h6 class="element"><a href="/infidem-feedback/mandates/roe/<?php echo $mandate->id;?>"><?= __('- ROE') ?></a></h6>
             <?php endif ?>
