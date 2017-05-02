@@ -36,10 +36,8 @@ $cakeDescription = 'In Fidem feedback';
   <?= $this->fetch('css') ?>
   <?= $this->fetch('script') ?>
 
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <script src="/infidem-feedback/webroot/js/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
   <link rel="stylesheet" href="/infidem-feedback/webroot/css/font-awesome.css"/>
   <link rel="stylesheet" href="/infidem-feedback/webroot/css/bootstrap.css"/>

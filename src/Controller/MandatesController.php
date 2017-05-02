@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Cake\ORM\TableRegistry;
+use Cake\Error\Debugger;
 
 class MandatesController extends AppController
 {
@@ -10,6 +11,7 @@ class MandatesController extends AppController
   {
     parent::initialize();
     $this->loadComponent('Flash');
+    // $this->loadComponent('RequestHandler');
   }
 
   public function index()
@@ -48,16 +50,53 @@ class MandatesController extends AppController
     $this->set('mandate', $mandate);
   }
 
+  public function datas()
+  {
+    $mandateId = $this->request->data['data'];
+    $datas = array();
+
+    $externalTable = TableRegistry::get('vuln_external');
+    $internalTable = TableRegistry::get('vuln_internal');
+    $wirelessTable = TableRegistry::get('vuln_wireless');
+    $mobileTable = TableRegistry::get('vuln_mobile');
+    $webTable = TableRegistry::get('vuln_web');
+
+    $extIps = $externalTable->find('all')
+    ->where(['mandate_id =' => $mandateId]);
+    $intIps = $internalTable->find('all')
+    ->where(['mandate_id =' => $mandateId]);
+    $wlIps = $wirelessTable->find('all')
+    ->where(['mandate_id =' => $mandateId]);
+    $webIps = $webTable->find('all')
+    ->where(['mandate_id =' => $mandateId]);
+    $mobileIps = $mobileTable->find('all')
+    ->where(['mandate_id =' => $mandateId]);
+    $datas['external'] = $extIps;
+    $datas['internal'] = $intIps;
+    $datas['wireless'] = $wlIps;
+    $datas['web'] = $webIps;
+    $datas['mobile'] = $mobileIps;
+
+    $this->autoRender = false;
+    $this->set('_serialize', 'data');
+    echo json_encode($datas);
+  }
+
   public function roe($mandateId)
   {
     $mandate = $this->Mandates->get($mandateId);
-    $data = array();
     $externalTable = TableRegistry::get('vuln_external');
     $internalTable = TableRegistry::get('vuln_internal');
     $wirelessTable = TableRegistry::get('vuln_wireless');
     $mobileTable = TableRegistry::get('vuln_mobile');
     $webTable = TableRegistry::get('vuln_web');
     if ($this->request->is('post')) {
+      $externalTable->deleteAll(['mandate_id' => $mandateId]);
+      $internalTable->deleteAll(['mandate_id' => $mandateId]);
+      $wirelessTable->deleteAll(['mandate_id' => $mandateId]);
+      $webTable->deleteAll(['mandate_id' => $mandateId]);
+      $mobileTable->deleteAll(['mandate_id' => $mandateId]);
+
       $external_ips = $this->request->data['ext_ip'];
       $internal_ips = $this->request->data['int_ip'];
       $wireless_ssids = $this->request->data['ssid'];
@@ -128,9 +167,7 @@ class MandatesController extends AppController
     }
     $extIps = $externalTable->find('all')
     ->where(['mandate_id =' => $mandate->id]);
-    // $data['mandate'] = json_encode($mandate);
-    // $data['extIPs'] = json_encode($extIps);
-    // $this->set('data', $mandate);
+    $this->set('mandate', $mandate);
   }
 
 public function advancement($mandateId)
