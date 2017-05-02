@@ -26,7 +26,7 @@ class AccesController extends AppController
       $acces->modified = date("Y-m-d H:i:s");
       if ($this->Acces->save($acces)) {
         $this->Flash->success(__('Your acces has been saved.'));
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'add']);
       }
       $this->Flash->error(__('Unable to add your acces.'));
     }
@@ -38,7 +38,7 @@ class AccesController extends AppController
   private function getUsers()
   {
     $users_table = TableRegistry::get('Users');
-    $users = $users_table->find('all');
+    $users = $users_table->find('list');
     $this->set(compact('users'));
   }
 
