@@ -15,35 +15,42 @@
                 ● <?php echo $mandate->name;
                 switch ($mandate->state) {
                   case 0:
-                  $advancement = __(" (tests non-débutés)");
+                  echo __(" (tests non-débutés)");
                   break;
                   case 1:
-                  $advancement = __(" (tests débutés)");
+                  echo __(" (tests débutés)");
                   break;
                   case 2:
-                  $advancement = __(" (tests semi-complétés)");
+                  echo __(" (tests semi-complétés)");
                   break;
                   case 3:
-                  $advancement = __(" (tests terminés)");
+                  echo __(" (tests terminés)");
                   break;
                   case 4:
-                  $advancement = __(" (analyse terminée)");
+                  echo __(" (analyse terminée)");
                   break;
                   case 5:
-                  $advancement = __(" (rapport terminée)");
+                  echo __(" (rapport terminé)");
                   break;
                 }
                 ?>
-                <?php echo $advancement; ?>
               </h5>
               <?php if ($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 4): ?>
               <h6 class="element"><a href="/infidem-feedback/mandates/roe/<?php echo $mandate->id;?>"><?= __('- ROE') ?></a></h6>
             <?php endif ?>
             <h6 class="element"><a href="/infidem-feedback/mandates/advancement/<?php echo $mandate->id;?>"><?= __('- Avancement') ?></a></h6>
-            <h6 class="element"><a href="/infidem-feedback/mandates/plan_action/<?php echo $mandate->id;?>"><?= __('- Plan d\'action') ?></a></h6>
-            <?php if ($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 3 || $this->request->session()->read('Auth.User.role_id') == 4): ?>
-              <h6 class="element"><a href="/infidem-feedback/mandates/validation/<?php echo $mandate->id;?>"><?= __('- Validation') ?></a></h6>
+            <?php if ($mandate->state >= 5): ?>
+              <h6 class="element"><a href="/infidem-feedback/mandates/plan_action/<?php echo $mandate->id;?>"><?= __('- Plan d\'action') ?></a></h6>
+              <?php if ($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 3 || $this->request->session()->read('Auth.User.role_id') == 4): ?>
+                <h6 class="element"><a href="/infidem-feedback/mandates/validation/<?php echo $mandate->id;?>"><?= __('- Validation') ?></a></h6>
               <?php endif ?>
+            <?php else: ?>
+              <h6 class="element"><a style="color:grey;" href="/infidem-feedback/mandates/plan_action/<?php echo $mandate->id;?>"><?= __('- Plan d\'action')?></a></h6>
+              <?php if ($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 3 || $this->request->session()->read('Auth.User.role_id') == 4): ?>
+                <h6 class="element" color="grey"><a style="color:grey;" href="/infidem-feedback/mandates/validation/<?php echo $mandate->id;?>"><?= __('- Validation') ?></a></h6>
+              <?php endif ?>
+            <?php endif ?>
+
         <?php endif; ?>
 
       <?php endforeach;

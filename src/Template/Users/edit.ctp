@@ -1,12 +1,16 @@
 <div class="users form">
 
+  <head>
+    <?= $this->Html->css('advancement.css') ?>
+  </head>
+
   <br>
   <a href="/infidem-feedback/mandates/index"><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"></a>
   <br>
 
 <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Edit a user') ?></legend>
+    <fieldset class='add'>
+        <legend class="legend"><?= __('Edit a user') ?></legend>
         <?= $this->Form->input('username') ?>
         <?= $this->Form->input('password') ?>
         <?= $this->Form->input('email') ?>
