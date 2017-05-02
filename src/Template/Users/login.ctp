@@ -12,8 +12,4 @@
           <br>
           <button type="submit" class="btn-info btn-login" ><?= __('Connexion') ?></button>
           <?= $this->Form->end() ?>
-
-          <legend class="legend"><?= __("Nouvel utilisateur") ?></legend><br><br><br><br>
-
-          <a href="/infidem-feedback/Users/addUser" target="_self"><button type="button" class="btn-info btn-login" ><?= __('S\'inscrire') ?></button></a>
       </fieldset>
