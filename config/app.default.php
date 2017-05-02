@@ -189,6 +189,13 @@ return [
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        'sendgrid' => [
+            'host' => 'smtp.sendgrid.net',
+            'port' => 587,
+            'timeout' => 30,
+            'username' => 'username here',
+            'password' => 'password here',
+        ],
     ],
 
     /**

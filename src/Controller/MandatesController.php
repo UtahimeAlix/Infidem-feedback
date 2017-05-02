@@ -49,6 +49,20 @@ class MandatesController extends AppController
     $this->set('mandate', $mandate);
   }
 
+  public function edit($id = null) {
+    $mandate = $this->Mandates->get($id);
+    if ($this->request->is(['post', 'put'])) {
+      $mandate = $this->Mandates->patchEntity($mandate, $this->request->data);
+      $mandate­->modified = date("Y-­‐m-­‐d H:i:s");
+      if ($this->Mandates->save($mandate)) {
+        $this->Flash->success(__('Your mandate has been updated.'));
+        return $this-­‐>redirect(['action' => 'index']);
+      }
+      $this->Flash-­‐>error(__('Unable to update your mandate.'));
+    }
+    $this->set('mandate', $mandate);
+  }
+
   public function datas()
   {
     $mandateId = $this->request->data['data'];

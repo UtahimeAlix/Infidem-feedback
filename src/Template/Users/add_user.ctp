@@ -1,4 +1,4 @@
-<?php $this->assign('title', __("Add User")); ?>
+<?php $this->assign('title', __("Ajouter un utilisateur")); ?>
 <div class="users form">
 <?= $this->Form->create($user) ?><br>
 <a href="/infidem-feedback/mandates/index"><img class="logo-img" src="/infidem-feedback/webroot/img/logo.jpg" alt="logo" style="align: middle;"></a>
