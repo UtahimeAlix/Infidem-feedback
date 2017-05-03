@@ -15,7 +15,7 @@
     <fieldset class="planAction">
         <legend class="legend"><?= __('Plan d\'action') ?></legend>
 
-        <table class="tableauVuln" id="tableauVuln">
+        <table class="tableauVuln" id="tableauVuln" data-id="<?= $mandate->id ?>">
           <col width="5px">
           <col width="20px">
           <col width="20px">
@@ -24,46 +24,20 @@
           <col width="30px">
           <col width="7px">
           <col width="10px">
+          <thead>
           <tr>
-            <th>ID</td>
-            <th><?= __('Nom') ?></td>
-            <th><?= __('Cible') ?></td>
-            <th><?= __('Correctifs') ?></td>
-            <th><?= __('Date de correction prévue') ?></td>
-            <th><?= __('Commentaires') ?></td>
-            <th><?= __('Corrigé') ?></td>
-              <th><?= __('À valider?') ?></td>
+            <th>ID</th>
+            <th><?= __('Nom') ?></th>
+            <th><?= __('Cible') ?></th>
+            <th><?= __('Correctifs') ?></th>
+            <th><?= __('Date de correction prévue') ?></th>
+            <th><?= __('Commentaires') ?></th>
+            <th><?= __('Corrigé') ?></th>
+            <th><?= __('À valider?') ?></th>
           </tr>
-
-          <tr>
-            <?php if ($this->request->session()->read('Auth.User.role_id') == 1): ?>
-            <td contenteditable='true'><input type='label' placeholder='ID' style='width:20px;'></imput></td>
-            <td contenteditable='true'><input type='label' placeholder='Nom' style='width:120px;'></td>
-            <td contenteditable='true'><input type='label' placeholder='Cible' style='width:120px;'></td>
-          <?php else: ?>
-            <td contenteditable='false'><input type='label' placeholder='ID' style='width:20px;' readonly></imput></td>
-            <td contenteditable='false'><input type='label' placeholder='Nom' style='width:120px;' readonly></td>
-            <td contenteditable='false'><input type='label' placeholder='Cible' style='width:120px;' readonly></td>
-          <?php endif ?>
-
-          <?php if ($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 4): ?>
-            <td contenteditable='true'><input type='label' placeholder='Correctifs' style='width:180px;'></td>
-            <td contenteditable='true'><input type="date" placeholder="yyyy-mm-dd" style="height: 20.5px;"></input></td>
-            <td contenteditable='true'><input type='label' placeholder='Commentaires' style='width:180px;'></td>
-            <td class="center-td"><input style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="termine" value="value"></td>
-        <?php else: ?>
-          <td contenteditable='false'><input type='label' placeholder='Correctifs' style='width:180px;' readonly></td>
-          <td contenteditable='false'><input type="date" placeholder="yyyy-mm-dd" style="height: 20.5px;" readonly></input></td>
-          <td contenteditable='false'><input type='label' placeholder='Commentaires' style='width:180px;' readonly></td>
-          <td class="center-td"><input disabled='true' style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="termine" value="value"></td>
-        <?php endif ?>
-
-        <?php if ($this->request->session()->read('Auth.User.role_id') == 1): ?>
-        <td class="center-td"><input style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="valide" value="value"></td>
-      <?php else: ?>
-      <td class="center-td"><input disabled='true' style="margin: 0 auto;" class="checkbox-planAction" type="checkbox" name="checkbox" id="valide" value="value"></td>
-      <?php endif ?>
-          </tr>
+        </thead>
+        <tbody>
+        </tbody>
         </table>
 
         <button onclick="addVulnerability(<?= $this->request->session()->read('Auth.User.role_id') ?>);" type="button" class="btn-info btn-mandate btn-add" ><?= __('+') ?></button>
@@ -71,5 +45,5 @@
 
     </fieldset>
 </div>
-
+<script type="text/javascript">var planActionUrl = '<?= $this->Url->Build(['controller' => 'Mandates', 'action' => 'planActionDatas'], true); ?>';</script>
 <?= $this->Html->script('planAction.js') ?>
