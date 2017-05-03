@@ -25,10 +25,10 @@ class AccesController extends AppController
       $acces->created = date("Y-m-d H:i:s");
       $acces->modified = date("Y-m-d H:i:s");
       if ($this->Acces->save($acces)) {
-        $this->Flash->success(__('Your acces has been saved.'));
+        $this->Flash->success(__('Accès sauvegardé.'));
         return $this->redirect(['action' => 'add']);
       }
-      $this->Flash->error(__('Unable to add your acces.'));
+      $this->Flash->error(__('Impossible d\'ajouter l\'accès.'));
     }
     $this->set('acces', $acces);
     $this->getUsers();
