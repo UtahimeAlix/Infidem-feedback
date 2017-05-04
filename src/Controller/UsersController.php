@@ -102,14 +102,14 @@ class UsersController extends AppController
             $this->set('name', 'Recipient Name');
             $email->subject('Reset Password');
             $email->sendAs = 'both';
-            $email->send($reset_token_link);
+            $email->send("Bonjour. Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant: " . $reset_token_link);
 
 
             $this->Users->save($user);
             $this->Flash->success('Cliquer sur le lien reçu par email pour changer de mot de passe.');
           }
           catch(Exception $e) {
-            $this->Flash->error('Try again later.');
+            $this->Flash->error('Une erreur est survenue, réessayer plus tard.');
           }
 
         }
@@ -166,10 +166,10 @@ public function edit($id = null)
       if ($user->id === $this->Auth->user('id')) {
         $this->Auth->setUser($user);
       }
-      $this->Flash->success(__('Your user has been updated.'));
+      $this->Flash->success(__('Utilisateur modifié.'));
       return $this->redirect(['action' => 'index']);
     }
-    $this->Flash->error(__('Unable to update your user.'));
+    $this->Flash->error(__('Impossible de modifier l\'utilisateur.'));
   }
   $this->set('user', $user);
   $this->getRoles();
@@ -180,7 +180,7 @@ public function delete($id)
   $this->request->allowMethod(['post', 'delete']);
   $user = $this->Users->get($id);
   if ($this->Users->delete($user)) {
-    $this->Flash->success(__('The user with id: {0} has been deleted', h($id)));
+    $this->Flash->success(__('Utilisteur supprimé', h($id)));
     return $this->redirect(['action' => 'index']);
   }
 }
