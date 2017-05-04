@@ -283,6 +283,8 @@ public function planAction($mandateId) {
       $isValids =null;
     }
 
+    $checkSize = count($vulnIds) - 1;
+
     for ($i=0; $i < count($vulnIds); $i++) {
       $actionRecord = $actionTable->newEntity();
       $actionRecord->vuln_id = $vulnIds[$i];
@@ -292,18 +294,21 @@ public function planAction($mandateId) {
       $time = strtotime($dates[$i]);
       $actionRecord->date = $time;
       $actionRecord->comment = $comments[$i];
-      if ($isDones[$i] != null && $isDones != null) {
+      if (isset($isDones[$checkSize])) {
         $actionRecord->is_fixed = true;
+        echo "Done : ".$isDones[$checkSize];
       } else {
         $actionRecord->is_fixed = false;
       }
-      if ($isValids[$i] != null && $isValids != null) {
+      if (isset($isValids[$checkSize])) {
+        echo "Valid : ".$isValids[$checkSize];
         $actionRecord->is_approved = true;
       } else {
         $actionRecord->is_approved = false;
       }
       $actionRecord->mandate_id = $mandateId;
       $actionTable->save($actionRecord);
+      $checkSize = $checkSize - 1;
     }
   }
   $mandate = $this->Mandates->get($mandateId);
