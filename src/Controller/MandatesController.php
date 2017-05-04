@@ -53,12 +53,12 @@ class MandatesController extends AppController
     $mandate = $this->Mandates->get($id);
     if ($this->request->is(['post', 'put'])) {
       $mandate = $this->Mandates->patchEntity($mandate, $this->request->data);
-      $mandate­->modified = date("Y-­‐m-­‐d H:i:s");
+      $mandate­->modified = date("Y-m-d H:i:s");
       if ($this->Mandates->save($mandate)) {
         $this->Flash->success(__('Mandat modifié.'));
-        return $this-­‐>redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'index']);
       }
-      $this->Flash-­‐>error(__('Impossible de modifier le mandat.'));
+      $this->Flash->error(__('Impossible de modifier le mandat.'));
     }
     $this->set('mandate', $mandate);
   }

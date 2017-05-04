@@ -6,7 +6,7 @@
 
 <div class="ods form">
   <fieldset class="add">
-    <legend class="legend"><?= __('En cours') ?></legend><br><br>
+    <legend class="legend"><?= __('En cours') ?>       <a href="/infidem-feedback/users/logout"><img class="logout-img" src="/infidem-feedback/webroot/img/logout.png"></a></legend><br><br>
 
     <?php if ($this->request->session()->read('Auth.User.role_id') == 1): ?>
       <h6 style="text-align:center;"><a href="/infidem-feedback/users/admin"><?= __('● Panneau d\'administration') ?></a></h6>
