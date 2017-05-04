@@ -68,3 +68,9 @@ height: 40px;
 .element {
   padding-left: 15px;
 }
+
+.logout-img {
+  width: 25px;
+  height: 25px;
+  float: right;
+}

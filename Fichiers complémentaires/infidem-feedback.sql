@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 04 Mai 2017 à 13:04
+-- Généré le :  Jeu 04 Mai 2017 à 15:42
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -38,7 +38,10 @@ CREATE TABLE `acces` (
 
 INSERT INTO `acces` (`id`, `user_id`, `mandate_id`) VALUES
 (1, 6, 2),
-(2, 6, 2);
+(2, 6, 2),
+(3, 7, 2),
+(4, 8, 2),
+(5, 7, 3);
 
 -- --------------------------------------------------------
 
@@ -57,15 +60,15 @@ CREATE TABLE `action_plan` (
   `is_approved` tinyint(4) DEFAULT NULL,
   `mandate_id` int(11) DEFAULT NULL,
   `vuln_id` varchar(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `action_plan`
 --
 
 INSERT INTO `action_plan` (`id`, `name`, `target`, `action`, `date`, `comment`, `is_fixed`, `is_approved`, `mandate_id`, `vuln_id`) VALUES
-(25, 'test', 'test', 'test', '2017-05-05', 'test', 0, 0, 2, 'test'),
-(24, 'test', 'test', 'test', '2017-05-04', 'test', 1, 1, 2, 'test');
+(24, 'test', 'test', 'test', '2017-05-04', 'test', 1, 1, 2, 'test'),
+(25, 'test', 'test', 'test', '2017-05-05', 'test', 0, 0, 2, 'test');
 
 -- --------------------------------------------------------
 
@@ -105,7 +108,7 @@ CREATE TABLE `mandates` (
   `mobile` tinyint(1) NOT NULL DEFAULT '0',
   `review` tinyint(1) NOT NULL DEFAULT '0',
   `validation` tinyint(1) NOT NULL DEFAULT '0',
-  `validation_state` int(11) NOT NULL
+  `validation_state` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -113,7 +116,8 @@ CREATE TABLE `mandates` (
 --
 
 INSERT INTO `mandates` (`id`, `name`, `state`, `contexte`, `besoin`, `external`, `internal`, `wireless`, `web`, `mobile`, `review`, `validation`, `validation_state`) VALUES
-(2, 'Test', 2, 'test', 'test', 1, 1, 1, 1, 1, 1, 1, 0);
+(2, 'Test', 5, 'test', 'test', 1, 0, 1, 1, 1, 1, 1, 0),
+(3, 'Test2', 0, 'ljgblk', 'kjg', 0, 0, 1, 1, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -160,7 +164,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `compagny_name`, `email`, `image`, `role_id`, `password_reset_token`, `hashval`) VALUES
-(6, 'pandastein', '$2y$10$JPn0oezoeq0wbyqAsiaeSOl/kfIOrmmaV/QngvdYHOSl7A.yAXLge', 'Name', 'Company', 'franck.jorge@hotmail.fr', '', 1, NULL, NULL);
+(6, 'pandastein', '$2y$10$JPn0oezoeq0wbyqAsiaeSOl/kfIOrmmaV/QngvdYHOSl7A.yAXLge', 'Name', 'Company', 'franck.jorge@hotmail.fr', '', 1, NULL, NULL),
+(7, 'Utahime', '$2y$10$jPukTRdAb9Gh3N1N.OyxIObYswOS.dnsnKEJ4/4xJtKWkiso0bvzO', NULL, NULL, 'alix.berson@gmail.com', NULL, 1, 'efabd6206b5215c635f717dff41cb429a6436fc42e7772eb2967558ce85edcab', '9e2a04189298e6ccb2c22e63bb03dc36db56746e'),
+(8, 'Vendeur', '$2y$10$mJUfJP68SJacQHqxhq5jWeSZvUN/Fcr81dwxoa5NRXqEMsyvWnL5i', '', '', 'vendeur@gmail.com', '', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -280,13 +286,15 @@ ALTER TABLE `acces`
 -- Index pour la table `action_plan`
 --
 ALTER TABLE `action_plan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mandate_id` (`mandate_id`);
 
 --
 -- Index pour la table `code_review`
 --
 ALTER TABLE `code_review`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mandate_id` (`mandate_id`);
 
 --
 -- Index pour la table `mandates`
@@ -311,31 +319,36 @@ ALTER TABLE `users`
 -- Index pour la table `vuln_external`
 --
 ALTER TABLE `vuln_external`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mandate_id` (`mandate_id`);
 
 --
 -- Index pour la table `vuln_internal`
 --
 ALTER TABLE `vuln_internal`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mandate_id` (`mandate_id`);
 
 --
 -- Index pour la table `vuln_mobile`
 --
 ALTER TABLE `vuln_mobile`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mandate_id` (`mandate_id`);
 
 --
 -- Index pour la table `vuln_web`
 --
 ALTER TABLE `vuln_web`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mandate_id` (`mandate_id`);
 
 --
 -- Index pour la table `vuln_wireless`
 --
 ALTER TABLE `vuln_wireless`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mandate_id` (`mandate_id`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -345,7 +358,7 @@ ALTER TABLE `vuln_wireless`
 -- AUTO_INCREMENT pour la table `acces`
 --
 ALTER TABLE `acces`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `action_plan`
 --
@@ -360,7 +373,7 @@ ALTER TABLE `code_review`
 -- AUTO_INCREMENT pour la table `mandates`
 --
 ALTER TABLE `mandates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `roles`
 --
@@ -370,7 +383,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `vuln_external`
 --
@@ -408,10 +421,52 @@ ALTER TABLE `acces`
   ADD CONSTRAINT `acces_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
+-- Contraintes pour la table `action_plan`
+--
+ALTER TABLE `action_plan`
+  ADD CONSTRAINT `action_plan_ibfk_1` FOREIGN KEY (`mandate_id`) REFERENCES `mandates` (`id`);
+
+--
+-- Contraintes pour la table `code_review`
+--
+ALTER TABLE `code_review`
+  ADD CONSTRAINT `code_review_ibfk_1` FOREIGN KEY (`mandate_id`) REFERENCES `mandates` (`id`);
+
+--
 -- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_role_fk` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+
+--
+-- Contraintes pour la table `vuln_external`
+--
+ALTER TABLE `vuln_external`
+  ADD CONSTRAINT `vuln_external_ibfk_1` FOREIGN KEY (`mandate_id`) REFERENCES `mandates` (`id`);
+
+--
+-- Contraintes pour la table `vuln_internal`
+--
+ALTER TABLE `vuln_internal`
+  ADD CONSTRAINT `vuln_internal_ibfk_1` FOREIGN KEY (`mandate_id`) REFERENCES `mandates` (`id`);
+
+--
+-- Contraintes pour la table `vuln_mobile`
+--
+ALTER TABLE `vuln_mobile`
+  ADD CONSTRAINT `vuln_mobile_ibfk_1` FOREIGN KEY (`mandate_id`) REFERENCES `mandates` (`id`);
+
+--
+-- Contraintes pour la table `vuln_web`
+--
+ALTER TABLE `vuln_web`
+  ADD CONSTRAINT `vuln_web_ibfk_1` FOREIGN KEY (`mandate_id`) REFERENCES `mandates` (`id`);
+
+--
+-- Contraintes pour la table `vuln_wireless`
+--
+ALTER TABLE `vuln_wireless`
+  ADD CONSTRAINT `vuln_wireless_ibfk_1` FOREIGN KEY (`mandate_id`) REFERENCES `mandates` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
