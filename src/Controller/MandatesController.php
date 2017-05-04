@@ -41,10 +41,10 @@ class MandatesController extends AppController
       $mandate->created = date("Y-m-d H:i:s");
       $mandate->modified = date("Y-m-d H:i:s");
       if ($this->Mandates->save($mandate)) {
-        $this->Flash->success(__('Your mandate has been saved.'));
+        $this->Flash->success(__('Mandat sauvegardé.'));
         return $this->redirect(['action' => 'index']);
       }
-      $this->Flash->error(__('Unable to add your mandate.'));
+      $this->Flash->error(__('Impossible d\'ajotuer le mandat.'));
     }
     $this->set('mandate', $mandate);
   }
@@ -55,10 +55,10 @@ class MandatesController extends AppController
       $mandate = $this->Mandates->patchEntity($mandate, $this->request->data);
       $mandate­->modified = date("Y-­‐m-­‐d H:i:s");
       if ($this->Mandates->save($mandate)) {
-        $this->Flash->success(__('Your mandate has been updated.'));
+        $this->Flash->success(__('Mandat modifié.'));
         return $this-­‐>redirect(['action' => 'index']);
       }
-      $this->Flash-­‐>error(__('Unable to update your mandate.'));
+      $this->Flash-­‐>error(__('Impossible de modifier le mandat.'));
     }
     $this->set('mandate', $mandate);
   }

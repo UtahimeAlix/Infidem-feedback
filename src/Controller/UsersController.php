@@ -38,7 +38,7 @@ class UsersController extends AppController
         $this->Auth->setUser($user);
         return $this->redirect($this->Auth->redirectUrl());
       }
-      $this->Flash->error(__('Invalid username or password, try again'));
+      $this->Flash->error(__('Nom d\'utilisateur ou mot de passe incorrect.'));
     }
   }
 
@@ -55,10 +55,10 @@ class UsersController extends AppController
       $user->created = date("Y-m-d H:i:s");
       $user->modified = date("Y-m-d H:i:s");
       if ($this->Users->save($user)) {
-        $this->Flash->success(__('Your user has been saved.'));
+        $this->Flash->success(__('Utilisateur enregistré.'));
         return $this->redirect(['action' => 'index']);
       }
-      $this->Flash->error(__('Unable to add your user.'));
+      $this->Flash->error(__('Impossible d\'ajouter l\'utilisateur.'));
     }
     $this->set('user', $user);
     $this->getRoles();
@@ -106,7 +106,7 @@ class UsersController extends AppController
 
 
             $this->Users->save($user);
-            $this->Flash->success('Please click on password reset link, sent in your email address to reset password.');
+            $this->Flash->success('Cliquer sur le lien reçu par email pour changer de mot de passe.');
           }
           catch(Exception $e) {
             $this->Flash->error('Try again later.');
@@ -115,7 +115,7 @@ class UsersController extends AppController
         }
         else
         {
-          $this->Flash->error('Sorry! Email address is not available here.');
+          $this->Flash->error('Cette adresse n\'est pas valide.');
         }
       }
     }
