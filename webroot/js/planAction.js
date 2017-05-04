@@ -12,8 +12,8 @@ $(document).ready(function() {
         for (var i = 0; i < data.actions.length; i++) {
           var currentTime = new Date(data.actions[i]['date']);
           var date = currentTime.getFullYear() + "-" +
-      ("0" + (currentTime.getMonth() + 2)).slice(-2) + "-" +
-      ("0" + currentTime.getDate() + 1).slice(-2);
+      ("0" + (currentTime.getMonth() + 1)).slice(-2) + "-" +
+      ("0" + currentTime.getDate()).slice(-2);
 
           if (data.user['role_id'] == 1) {
             $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' style='width:20px;' value='"+data.actions[i]['vuln_id']+"'></td>");

@@ -274,9 +274,13 @@ public function planAction($mandateId) {
     $comments = $this->request->data['comment'];
     if(isset($this->request->data['isdone'])){
       $isDones = $this->request->data['isdone'];
+    } else {
+      $isDones = null;
     }
     if(isset($this->request->data['isvalid'])){
       $isValids = $this->request->data['isvalid'];
+    } else {
+      $isValids =null;
     }
 
     for ($i=0; $i < count($vulnIds); $i++) {
