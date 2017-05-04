@@ -12,6 +12,7 @@
 <br><br>
 
 <div class="ods form">
+  <form method="post" action="">
     <fieldset class="planAction">
         <legend class="legend"><?= __('Plan d\'action') ?></legend>
 
@@ -41,9 +42,13 @@
         </table>
 
         <button onclick="addVulnerability(<?= $this->request->session()->read('Auth.User.role_id') ?>);" type="button" class="btn-info btn-mandate btn-add" ><?= __('+') ?></button>
-        <a href="" target="_self"><button type="button" class="btn-info btn-valider" ><?= __('Valider') ?></button></a>
+        <a href="" target="_self"><button type="submit" class="btn-info btn-valider" ><?= __('Valider') ?></button></a>
 
     </fieldset>
+    <form>
 </div>
-<script type="text/javascript">var planActionUrl = '<?= $this->Url->Build(['controller' => 'Mandates', 'action' => 'planActionDatas'], true); ?>';</script>
+<script type="text/javascript">
+var planActionUrl = '<?= $this->Url->Build(['controller' => 'Mandates', 'action' => 'planActionDatas'], true); ?>';
+var savePlanActionUrl = '<?= $this->Url->Build(['controller' => 'Mandates', 'action' => 'planActionSave'], true); ?>';
+</script>
 <?= $this->Html->script('planAction.js') ?>

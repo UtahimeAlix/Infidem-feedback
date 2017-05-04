@@ -220,13 +220,88 @@ public function planActionDatas() {
   ->where(['mandate_id =' => $mandateId]);
   $datas['actions'] = $actions;
 
-  // Date::setJsonEncodeFormat('yyyy-MM-dd');
   $this->autoRender = false;
   $this->set('_serialize', 'data');
   echo json_encode($datas);
 }
 
+public function planActionSave() {
+  $actionTable = TableRegistry::get('action_plan');
+  $mandateId = $this->request->data['data'];
+
+  $actionTable->deleteAll(['mandate_id' => $mandateId]);
+
+  $vulnIds = $this->request->data['vuln_id'];
+  // $names = $this->request->data['name'];
+  // $targets = $this->request->data['target'];
+  // $actions = $this->request->data['action'];
+  // $dates = $this->request->data['date'];
+  // $comments = $this->request->data['comment'];
+  // $isDones = $this->request->data['isdone'];
+  // $isValids = $this->request->data['isvalid'];
+
+  for ($i=0; $i < count($vulnIds); $i++) {
+    $actionRecord = $actionTable->newEntity();
+    $actionRecord->vuln_id = $vulnIds[i];
+    // $actionRecord->name = $names[i];
+    // $actionRecord->target = $targets[i];
+    // $actionRecord->action = $actions[i];
+    // $actionRecord->date = $dates[i];
+    // $actionRecord->comment = $comments[i];
+    // $actionRecord->is_fixed = $isDones[i];
+    // $actionRecord->is_approved = $isValids[i];
+    $actionRecord->mandate_id = $mandateId;
+    $actionTable->save($actionRecord);
+  }
+
+  $this->autoRender = false;
+  $this->set('_serialize', 'data');
+  echo json_encode('success');
+}
+
 public function planAction($mandateId) {
+  if ($this->request->is('post')) {
+    $actionTable = TableRegistry::get('action_plan');
+    // $mandateId = $this->request->data['data'];
+
+    $actionTable->deleteAll(['mandate_id' => $mandateId]);
+
+    $vulnIds = $this->request->data['vuln_id'];
+    $names = $this->request->data['name'];
+    $targets = $this->request->data['target'];
+    $actions = $this->request->data['action'];
+    $dates = $this->request->data['date'];
+    $comments = $this->request->data['comment'];
+    if(isset($this->request->data['isdone'])){
+      $isDones = $this->request->data['isdone'];
+    }
+    if(isset($this->request->data['isvalid'])){
+      $isValids = $this->request->data['isvalid'];
+    }
+
+    for ($i=0; $i < count($vulnIds); $i++) {
+      $actionRecord = $actionTable->newEntity();
+      $actionRecord->vuln_id = $vulnIds[$i];
+      $actionRecord->name = $names[$i];
+      $actionRecord->target = $targets[$i];
+      $actionRecord->action = $actions[$i];
+      $time = strtotime($dates[$i]);
+      $actionRecord->date = $time;
+      $actionRecord->comment = $comments[$i];
+      if ($isDones[$i] != null && $isDones != null) {
+        $actionRecord->is_fixed = true;
+      } else {
+        $actionRecord->is_fixed = false;
+      }
+      if ($isValids[$i] != null && $isValids != null) {
+        $actionRecord->is_approved = true;
+      } else {
+        $actionRecord->is_approved = false;
+      }
+      $actionRecord->mandate_id = $mandateId;
+      $actionTable->save($actionRecord);
+    }
+  }
   $mandate = $this->Mandates->get($mandateId);
   $this->set('mandate', $mandate);
 }

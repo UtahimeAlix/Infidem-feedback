@@ -163,6 +163,9 @@ public function edit($id = null)
     $user = $this->Users->patchEntity($user, $this->request->data);
     $user->modified = date("Y-m-d H:i:s");
     if ($this->Users->save($user)) {
+      if ($user->id === $this->Auth->user('id')) {
+        $this->Auth->setUser($user);
+      }
       $this->Flash->success(__('Your user has been updated.'));
       return $this->redirect(['action' => 'index']);
     }
