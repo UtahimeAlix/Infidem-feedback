@@ -232,24 +232,24 @@ public function planActionSave() {
   $actionTable->deleteAll(['mandate_id' => $mandateId]);
 
   $vulnIds = $this->request->data['vuln_id'];
-  // $names = $this->request->data['name'];
-  // $targets = $this->request->data['target'];
-  // $actions = $this->request->data['action'];
-  // $dates = $this->request->data['date'];
-  // $comments = $this->request->data['comment'];
-  // $isDones = $this->request->data['isdone'];
-  // $isValids = $this->request->data['isvalid'];
+  $names = $this->request->data['name'];
+  $targets = $this->request->data['target'];
+  $actions = $this->request->data['action'];
+  $dates = $this->request->data['date'];
+  $comments = $this->request->data['comment'];
+  $isDones = $this->request->data['isdone'];
+  $isValids = $this->request->data['isvalid'];
 
   for ($i=0; $i < count($vulnIds); $i++) {
     $actionRecord = $actionTable->newEntity();
     $actionRecord->vuln_id = $vulnIds[i];
-    // $actionRecord->name = $names[i];
-    // $actionRecord->target = $targets[i];
-    // $actionRecord->action = $actions[i];
-    // $actionRecord->date = $dates[i];
-    // $actionRecord->comment = $comments[i];
-    // $actionRecord->is_fixed = $isDones[i];
-    // $actionRecord->is_approved = $isValids[i];
+    $actionRecord->name = $names[i];
+    $actionRecord->target = $targets[i];
+    $actionRecord->action = $actions[i];
+    $actionRecord->date = $dates[i];
+    $actionRecord->comment = $comments[i];
+    $actionRecord->is_fixed = $isDones[i];
+    $actionRecord->is_approved = $isValids[i];
     $actionRecord->mandate_id = $mandateId;
     $actionTable->save($actionRecord);
   }
@@ -272,16 +272,8 @@ public function planAction($mandateId) {
     $actions = $this->request->data['action'];
     $dates = $this->request->data['date'];
     $comments = $this->request->data['comment'];
-    if(isset($this->request->data['isdone'])){
-      $isDones = $this->request->data['isdone'];
-    } else {
-      $isDones = null;
-    }
-    if(isset($this->request->data['isvalid'])){
-      $isValids = $this->request->data['isvalid'];
-    } else {
-      $isValids =null;
-    }
+    $isDones = $this->request->data['isdone'];
+    $isValids = $this->request->data['isvalid'];
 
     $checkSize = count($vulnIds) - 1;
 
@@ -294,14 +286,12 @@ public function planAction($mandateId) {
       $time = strtotime($dates[$i]);
       $actionRecord->date = $time;
       $actionRecord->comment = $comments[$i];
-      if (isset($isDones[$checkSize])) {
+      if ($isDones[$checkSize] === '1') {
         $actionRecord->is_fixed = true;
-        echo "Done : ".$isDones[$checkSize];
       } else {
         $actionRecord->is_fixed = false;
       }
-      if (isset($isValids[$checkSize])) {
-        echo "Valid : ".$isValids[$checkSize];
+      if ($isValids[$checkSize] === '1') {
         $actionRecord->is_approved = true;
       } else {
         $actionRecord->is_approved = false;

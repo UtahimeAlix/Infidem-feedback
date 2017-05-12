@@ -1,3 +1,14 @@
+var arr = [
+{val : 0, text: 'Non'},
+{val : 1, text: 'Oui'}
+];
+var sel = $("<select class='form-control' id='isdone[]' name='isdone[]'>");
+var sel2 = $("<select class='form-control' id='isvalid[]' name='isvalid[]'>");
+$(arr).each(function() {
+sel.append($("<option>").attr('value',this.val).text(this.text));
+sel2.append($("<option>").attr('value',this.val).text(this.text));
+});
+
 $(document).ready(function() {
   var id = $('#tableauVuln').attr('data-id');
 
@@ -16,52 +27,76 @@ $(document).ready(function() {
       $("#tableauVuln tbody").append("<tr>");
 
           if (data.user['role_id'] == 1) {
-            $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' style='width:20px;' value='"+data.actions[i]['vuln_id']+"'></td>");
-            $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='name[]' name='name[]' placeholder='Nom' style='width:120px;' value='"+data.actions[i]['name']+"'></td>");
-            $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='target[]' name='target[]' placeholder='Cible' style='width:120px;' value='"+data.actions[i]['target']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' value='"+data.actions[i]['vuln_id']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='name[]' name='name[]' placeholder='Nom' value='"+data.actions[i]['name']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='target[]' name='target[]' placeholder='Cible' value='"+data.actions[i]['target']+"'></td>");
           } else {
-            $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' style='width:20px;' readonly value='"+data.actions[i]['vuln_id']+"'></td>");
-            $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='name[]' name='name[]' placeholder='Nom' style='width:120px;' readonly value='"+data.actions[i]['name']+"'></td>");
-            $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='target[]' name='target[]' placeholder='Cible' style='width:120px;' readonly value='"+data.actions[i]['target']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' readonly value='"+data.actions[i]['vuln_id']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='name[]' name='name[]' placeholder='Nom' readonly value='"+data.actions[i]['name']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='target[]' name='target[]' placeholder='Cible' readonly value='"+data.actions[i]['target']+"'></td>");
           }
           if (data.user['role_id'] == 1 || data.user['role_id'] == 4) {
-            $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='action[]' name='action[]' placeholder='Correctifs' style='width:180px;' value='"+data.actions[i]['action']+"'></td>");
-            $("#tableauVuln tbody").append("<td contenteditable='true'><input type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' style='height: 20.5px;' value='"+date+"'></td>");
-            $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='comment[]' name='comment[]' placeholder='Commentaires' style='width:180px;' value='"+data.actions[i]['comment']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='action[]' name='action[]' placeholder='Correctifs' value='"+data.actions[i]['action']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' value='"+date+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='comment[]' name='comment[]' placeholder='Commentaires' value='"+data.actions[i]['comment']+"'></td>");
             if (data.actions[i]['is_fixed']) {
-              $("#tableauVuln tbody").append("<td class='center-td'><input style='margin: 0 auto;' id='isdone[]' name='isdone["+i+"]' class='checkbox-planAction' type='checkbox' value='1' checked>");
-              $("#tableauVuln tbody").append("<input style='margin: 0 auto;' id='isdone[]' name='isdone["+i+"]' class='checkbox-planAction' type='hidden' value='0'></td>");
+              sel.find('option[value="0"]').attr("selected",false);
+              sel.find('option[value="1"]').attr("selected",true);
+              sel.attr("disabled",false);
+              $("#tableauVuln tbody").append("<td class='center-td'></td>");
+              $("#tableauVuln tbody").find('td:last').append(sel.clone());
             } else {
-              $("#tableauVuln tbody").append("<td class='center-td'><input style='margin: 0 auto;' id='isdone[]' name='isdone["+i+"]' class='checkbox-planAction' type='checkbox' value='1'>");
-              $("#tableauVuln tbody").append("<input style='margin: 0 auto;' id='isdone[]' name='isdone["+i+"]' class='checkbox-planAction' type='hidden' value='0'></td>");
+              sel.find('option[value="0"]').attr("selected",true);
+              sel.find('option[value="1"]').attr("selected",false);
+              sel.attr("disabled",false);
+              $("#tableauVuln tbody").append("<td class='center-td'></td>");
+              $("#tableauVuln tbody").find('td:last').append(sel.clone());
             }
           } else {
-            $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='action[]' name='action[]' placeholder='Correctifs' style='width:180px;' readonly value='"+data.actions[i]['action']+"'></td>");
-            $("#tableauVuln tbody").append("<td contenteditable='false'><input type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' style='height: 20.5px;' readonly value='"+date+"'></td>");
-            $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='comment[]' name='comment[]' placeholder='Commentaires' style='width:180px;' readonly value='"+data.actions[i]['comment']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='action[]' name='action[]' placeholder='Correctifs'  readonly value='"+data.actions[i]['action']+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd'  readonly value='"+date+"'></td>");
+            $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='comment[]' name='comment[]' placeholder='Commentaires'  readonly value='"+data.actions[i]['comment']+"'></td>");
             if (data.actions[i]['is_fixed']) {
-              $("#tableauVuln tbody").append("<td class='center-td'><input disabled='true' style='margin: 0 auto;' id='isdone[]' name='isdone["+i+"]' class='checkbox-planAction' type='checkbox' value='1' checked>");
-              $("#tableauVuln tbody").append("<input disabled='true' style='margin: 0 auto;' id='isdone[]' name='isdone["+i+"]' class='checkbox-planAction' type='hidden' value='0'></td>");
+              sel.find('option[value="0"]').attr("selected",false);
+              sel.find('option[value="1"]').attr("selected",true);
+              sel.attr("disabled",true);
+              $("#tableauVuln tbody").append("<td class='center-td' contenteditable='false'></td>");
+              $("#tableauVuln tbody").find('td:last').append(sel.clone());
             } else {
-              $("#tableauVuln tbody").append("<td class='center-td'><input disabled='true' style='margin: 0 auto;' id='isdone[]' name='isdone["+i+"]' class='checkbox-planAction' type='checkbox' value='1'>");
-              $("#tableauVuln tbody").append("<input disabled='true' style='margin: 0 auto;' id='isdone[]' name='isdone["+i+"]' class='checkbox-planAction' type='hidden' value='0'></td>");
+              sel.find('option[value="0"]').attr("selected",true);
+              sel.find('option[value="1"]').attr("selected",false);
+              sel.attr("disabled",true);
+              $("#tableauVuln tbody").append("<td class='center-td' contenteditable='false'></td>");
+              $("#tableauVuln tbody").find('td:last').append(sel.clone());
             }
           }
           if (data.user['role_id'] == 1) {
             if (data.actions[i]['is_approved']) {
-              $("#tableauVuln tbody").append("<td class='center-td'><input style='margin: 0 auto;' id='isvalid[]' name='isvalid["+i+"]' class='checkbox-planAction' type='checkbox' value='1' checked>");
-              $("#tableauVuln tbody").append("<input style='margin: 0 auto;' id='isvalid[]' name='isvalid["+i+"]' class='checkbox-planAction' type='hidden' value='0'></td>");
+              sel2.find('option[value="0"]').attr("selected",false);
+              sel2.find('option[value="1"]').attr("selected",true);
+              sel2.attr("disabled",false);
+              $("#tableauVuln tbody").append("<td class='center-td'></td>");
+              $("#tableauVuln tbody").find('td:last').append(sel2.clone());
             } else {
-              $("#tableauVuln tbody").append("<td class='center-td'><input style='margin: 0 auto;' id='isvalid[]' name='isvalid["+i+"]' class='checkbox-planAction' type='checkbox' value='1'>");
-              $("#tableauVuln tbody").append("<input style='margin: 0 auto;' id='isvalid[]' name='isvalid["+i+"]' class='checkbox-planAction' type='hidden' value='0'></td>");
+              sel2.find('option[value="0"]').attr("selected",true);
+              sel2.find('option[value="1"]').attr("selected",false);
+              sel2.attr("disabled",false);
+              $("#tableauVuln tbody").append("<td class='center-td'></td>");
+              $("#tableauVuln tbody").find('td:last').append(sel2.clone());
             }
           } else {
             if (data.actions[i]['is_approved']) {
-              $("#tableauVuln tbody").append("<td class='center-td'><input disabled='true' style='margin: 0 auto;' id='isvalid[]' name='isvalid["+i+"]' class='checkbox-planAction' type='checkbox' value='1' checked></td>");
-              $("#tableauVuln tbody").append("<input disabled='true' style='margin: 0 auto;' id='isvalid[]' name='isvalid["+i+"]' class='checkbox-planAction' type='hidden' value='0'>");
+              sel2.find('option[value="0"]').attr("selected",false);
+              sel2.find('option[value="1"]').attr("selected",true);
+              sel2.attr("disabled",true);
+              $("#tableauVuln tbody").append("<td class='center-td' contenteditable='false'></td>");
+              $("#tableauVuln tbody").find('td:last').append(sel2.clone());
             } else {
-              $("#tableauVuln tbody").append("<td class='center-td'><input disabled='true' style='margin: 0 auto;' id='isvalid[]' name='isvalid["+i+"]' class='checkbox-planAction' type='checkbox' value='1'>");
-              $("#tableauVuln tbody").append("<input disabled='true' style='margin: 0 auto;' id='isvalid[]' name='isvalid["+i+"]' class='checkbox-planAction' type='hidden' value='0'></td>");
+              sel2.find('option[value="0"]').attr("selected",true);
+              sel2.find('option[value="1"]').attr("selected",false);
+              sel2.attr("disabled",true);
+              $("#tableauVuln tbody").append("<td class='center-td' contenteditable='false'></td>");
+              $("#tableauVuln tbody").find('td:last').append(sel2.clone());
             }
             $("#tableauVuln tbody").append("</tr>");
           }
@@ -69,29 +104,45 @@ $(document).ready(function() {
       } else {
         $("#tableauVuln tbody").append("<tr>");
         if (data.user['role_id'] == 1) {
-          $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' style='width:20px;'></td>");
-          $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='name[]' name='name[]' placeholder='Nom' style='width:120px;'></td>");
-          $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='target[]' name='target[]' placeholder='Cible' style='width:120px;'></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' ></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='name[]' name='name[]' placeholder='Nom' ></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='target[]' name='target[]' placeholder='Cible' ></td>");
         } else {
-          $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' style='width:20px;' readonly></td>");
-          $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='name[]' name='name[]' placeholder='Nom' style='width:120px;' readonly></td>");
-          $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='target[]' name='target[]' placeholder='Cible' style='width:120px;' readonly></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID'  readonly></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='name[]' name='name[]' placeholder='Nom'  readonly></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='target[]' name='target[]' placeholder='Cible'  readonly></td>");
         }
         if (data.user['role_id'] == 1 || data.user['role_id'] == 4) {
-          $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='action[]' name='action[]' placeholder='Correctifs' style='width:180px;'></td>");
-          $("#tableauVuln tbody").append("<td contenteditable='true'><input type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' style='height: 20.5px;'></td>");
-          $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='comment[]' name='comment[]' placeholder='Commentaires' style='width:180px;'></td>");
-          $("#tableauVuln tbody").append("<td class='center-td'><input style='margin: 0 auto;' id='isdone[]' name='isdone[]' class='checkbox-planAction' type='checkbox' value='value'></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='action[]' name='action[]' placeholder='Correctifs' ></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' ></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='comment[]' name='comment[]' placeholder='Commentaires' ></td>");
+          sel.find('option[value="0"]').attr("selected",false);
+          sel.find('option[value="1"]').attr("selected",false);
+          sel.attr("disabled",false);
+          $("#tableauVuln tbody").append("<td class='center-td'></td>");
+          $("#tableauVuln tbody").find('td:last').append(sel.clone());
         } else {
-          $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='action[]' name='action[]' placeholder='Correctifs' style='width:180px;' readonly></td>");
-          $("#tableauVuln tbody").append("<td contenteditable='false'><input type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' style='height: 20.5px;' readonly></td>");
-          $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='comment[]' name='comment[]' placeholder='Commentaires' style='width:180px;' readonly></td>");
-          $("#tableauVuln tbody").append("<td class='center-td'><input disabled='true' style='margin: 0 auto;' id='isdone[]' name='isdone[]' class='checkbox-planAction' type='checkbox' value='value'></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='action[]' name='action[]' placeholder='Correctifs'  readonly></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd'  readonly></td>");
+          $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='comment[]' name='comment[]' placeholder='Commentaires'  readonly></td>");
+          sel.find('option[value="0"]').attr("selected",false);
+          sel.find('option[value="1"]').attr("selected",false);
+          sel.attr("disabled",true);
+          $("#tableauVuln tbody").append("<td class='center-td' contenteditable='false'></td>");
+          $("#tableauVuln tbody").find('td:last').append(sel.clone());
         }
         if (data.user['role_id'] == 1) {
-          $("#tableauVuln tbody").append("<td class='center-td'><input style='margin: 0 auto;' id='isvalid[]' name='isvalid[]' class='checkbox-planAction' type='checkbox' value='value'></td>");
+          sel2.find('option[value="0"]').attr("selected",false);
+          sel2.find('option[value="1"]').attr("selected",false);
+          sel2.attr("disabled",false);
+          $("#tableauVuln tbody").append("<td class='center-td'></td>");
+          $("#tableauVuln tbody").find('td:last').append(sel2.clone());
         } else {
-          $("#tableauVuln tbody").append("<td class='center-td'><input disabled='true' style='margin: 0 auto;' id='isvalid[]' name='isvalid[]' class='checkbox-planAction' type='checkbox' value='value'></td>");
+          sel2.find('option[value="0"]').attr("selected",false);
+          sel2.find('option[value="1"]').attr("selected",false);
+          sel2.attr("disabled",true);
+          $("#tableauVuln tbody").append("<td class='center-td' contenteditable='false'></td>");
+          $("#tableauVuln tbody").find('td:last').append(sel2.clone());
         }
         $("#tableauVuln tbody").append("</tr>");
       }
@@ -99,35 +150,55 @@ $(document).ready(function() {
     }
   });
 
+  var role_id = $('#addVulnBtn').attr('data-id');
+
+  $('#addVulnBtn').on('click', function(){ addVulnerability(role_id); });
+
 });
 
 function addVulnerability(role_id) {
 
   $("#tableauVuln tbody").append("<tr>");
   if (role_id == 1) {
-    $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' style='width:20px;'></td>");
-    $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='name[]' name='name[]' placeholder='Nom' style='width:120px;'></td>");
-    $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='target[]' name='target[]' placeholder='Cible' style='width:120px;'></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' ></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='name[]' name='name[]' placeholder='Nom' ></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='target[]' name='target[]' placeholder='Cible' ></td>");
   } else {
-    $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID' style='width:20px;' readonly></td>");
-    $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='name[]' name='name[]' placeholder='Nom' style='width:120px;' readonly></td>");
-    $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='target[]' name='target[]' placeholder='Cible' style='width:120px;' readonly></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='vuln_id[]' name='vuln_id[]' placeholder='ID'  readonly></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='name[]' name='name[]' placeholder='Nom'  readonly></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='target[]' name='target[]' placeholder='Cible'  readonly></td>");
   }
   if (role_id == 1 || role_id == 4) {
-    $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='action[]' name='action[]' placeholder='Correctifs' style='width:180px;'></td>");
-    $("#tableauVuln tbody").append("<td contenteditable='true'><input type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' style='height: 20.5px;'></td>");
-    $("#tableauVuln tbody").append("<td contenteditable='true'><input type='label' id='comment[]' name='comment[]' placeholder='Commentaires' style='width:180px;'></td>");
-    $("#tableauVuln tbody").append("<td class='center-td'><input style='margin: 0 auto;' id='isdone[]' name='isdone[]' class='checkbox-planAction' type='checkbox' value='value'></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='action[]' name='action[]' placeholder='Correctifs' ></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' ></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='true'><input class='form-control input-sm' type='label' id='comment[]' name='comment[]' placeholder='Commentaires' ></td>");
+    sel.find('option[value="0"]').attr("selected",false);
+    sel.find('option[value="1"]').attr("selected",false);
+    sel.attr("disabled",false);
+    $("#tableauVuln tbody").append("<td class='center-td'></td>");
+    $("#tableauVuln tbody").find('td:last').append(sel.clone());
   } else {
-    $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='action[]' name='action[]' placeholder='Correctifs' style='width:180px;' readonly></td>");
-    $("#tableauVuln tbody").append("<td contenteditable='false'><input type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd' style='height: 20.5px;' readonly></td>");
-    $("#tableauVuln tbody").append("<td contenteditable='false'><input type='label' id='comment[]' name='comment[]' placeholder='Commentaires' style='width:180px;' readonly></td>");
-    $("#tableauVuln tbody").append("<td class='center-td'><input disabled='true' style='margin: 0 auto;' id='isdone[]' name='isdone[]' class='checkbox-planAction' type='checkbox' value='value'></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='action[]' name='action[]' placeholder='Correctifs'  readonly></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='date' id='date[]' name='date[]' placeholder='yyyy-mm-dd'  readonly></td>");
+    $("#tableauVuln tbody").append("<td contenteditable='false'><input class='form-control input-sm' type='label' id='comment[]' name='comment[]' placeholder='Commentaires'  readonly></td>");
+    sel.find('option[value="0"]').attr("selected",false);
+    sel.find('option[value="1"]').attr("selected",false);
+    sel.attr("disabled",true);
+    $("#tableauVuln tbody").append("<td class='center-td' contenteditable='false'></td>");
+    $("#tableauVuln tbody").find('td:last').append(sel.clone());
   }
   if (role_id == 1) {
-    $("#tableauVuln tbody").append("<td class='center-td'><input style='margin: 0 auto;' id='isvalid[]' name='isvalid[]' class='checkbox-planAction' type='checkbox' value='value'></td>");
+    sel2.find('option[value="0"]').attr("selected",false);
+    sel2.find('option[value="1"]').attr("selected",false);
+    sel2.attr("disabled",false);
+    $("#tableauVuln tbody").append("<td class='center-td'></td>");
+    $("#tableauVuln tbody").find('td:last').append(sel2.clone());
   } else {
-    $("#tableauVuln tbody").append("<td class='center-td'><input disabled='true' style='margin: 0 auto;' id='isvalid[]' name='isvalid[]' class='checkbox-planAction' type='checkbox' value='value'></td>");
+    sel2.find('option[value="0"]').attr("selected",false);
+    sel2.find('option[value="1"]').attr("selected",false);
+    sel2.attr("disabled",true);
+    $("#tableauVuln tbody").append("<td class='center-td' contenteditable='false'></td>");
+    $("#tableauVuln tbody").find('td:last').append(sel2.clone());
   }
   $("#tableauVuln tbody").append("</tr>");
 
